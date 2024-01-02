@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://d4a226xmyckti"]
+
+[ext_resource type="Texture2D" uid="uid://5456v38vq14x" path="res://Cenas/Particles/Sprites/dagger.png" id="1_0mgsl"]
+[ext_resource type="Texture2D" uid="uid://x7i7trhbvr5c" path="res://Cenas/Particles/Sprites/Particles-04.png" id="2_0xtyr"]
+[ext_resource type="PackedScene" uid="uid://cfpoy2uoslmr5" path="res://Cenas/Particles/delete_effect.tscn" id="3_c2p61"]
+
+[sub_resource type="Curve" id="Curve_v0qwv"]
+_data = [Vector2(0, 0.174377), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="dagger_ghost" type="CPUParticles2D"]
+rotation = -0.00771022
+emitting = false
+amount = 1
+lifetime = 0.3
+one_shot = true
+texture = ExtResource("1_0mgsl")
+direction = Vector2(0, 0)
+gravity = Vector2(0, 150)
+initial_velocity_min = 10.0
+initial_velocity_max = 10.0
+angular_velocity_min = 150.0
+angular_velocity_max = 150.0
+damping_max = 10.0
+
+[node name="Air_Dagger" type="CPUParticles2D" parent="."]
+emitting = false
+lifetime = 0.3
+one_shot = true
+explosiveness = 0.5
+texture = ExtResource("2_0xtyr")
+emission_shape = 1
+emission_sphere_radius = 8.0
+direction = Vector2(0, 0)
+spread = 90.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 30.0
+initial_velocity_max = 30.0
+scale_amount_curve = SubResource("Curve_v0qwv")
+
+[node name="Delete_effect" parent="." instance=ExtResource("3_c2p61")]
+wait_time = 0.5

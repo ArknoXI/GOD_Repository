@@ -1,0 +1,86 @@
+[gd_scene load_steps=9 format=3 uid="uid://dum2usa3cs3sw"]
+
+[ext_resource type="PackedScene" uid="uid://d2lw1duviosta" path="res://Weapons/Projectile_Prefabs/projectile.tscn" id="1_dnynd"]
+[ext_resource type="PackedScene" uid="uid://bxy4mlnyvpohk" path="res://Weapons/Projectile_Prefabs/Staff/blast_fade.tscn" id="2_uh7ps"]
+[ext_resource type="Texture2D" uid="uid://bu5b6bb6yw0t8" path="res://Weapons/Projectile_Sprites/Retro Impact Effect Pack 3 A.png" id="3_ybpfg"]
+[ext_resource type="PackedScene" uid="uid://r76x3xlrbfw0" path="res://Cenas/Particles/Trail_particles/trail_projectile.tscn" id="4_jayqi"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bw1gt"]
+radius = 3.0
+
+[sub_resource type="Animation" id="Animation_2mgjg"]
+resource_name = "Going"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [138, 139, 140, 141, 142, 143]
+}
+
+[sub_resource type="Animation" id="Animation_n5m1h"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_em3m3"]
+_data = {
+"Going": SubResource("Animation_2mgjg"),
+"RESET": SubResource("Animation_n5m1h")
+}
+
+[node name="Fire_Projectile" instance=ExtResource("1_dnynd")]
+collision_layer = 32
+collision_mask = 9
+blast_scene = ExtResource("2_uh7ps")
+faded = true
+hit_rgb = Color(1, 0.713726, 0.47451, 1)
+
+[node name="Texture" parent="." index="0"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_ybpfg")
+hframes = 6
+vframes = 24
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("CircleShape2D_bw1gt")
+
+[node name="AnimationPlayer" parent="." index="2"]
+libraries = {
+"": SubResource("AnimationLibrary_em3m3")
+}
+autoplay = "Going"
+
+[node name="Duration" parent="." index="3"]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[node name="CanTouch" type="Timer" parent="." index="4"]
+wait_time = 0.2
+one_shot = true
+autostart = true
+
+[node name="Trail_projectile" parent="." index="5" instance=ExtResource("4_jayqi")]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Duration" to="." method="_on_duration_timeout"]
+[connection signal="timeout" from="CanTouch" to="." method="_on_can_touch_timeout"]

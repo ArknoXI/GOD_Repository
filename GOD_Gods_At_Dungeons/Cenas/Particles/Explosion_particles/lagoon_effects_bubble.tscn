@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bcg0j5qyw2cya"]
+
+[ext_resource type="Texture2D" uid="uid://c4ncer6ecdbdb" path="res://Cenas/Particles/Sprites/Particles-07.png" id="1_i7n5g"]
+
+[sub_resource type="Curve" id="Curve_itkqy"]
+_data = [Vector2(0, 0.396227), 0.0, 0.0, 0, 0, Vector2(0.872807, 0.109434), 0.0, 0.0, 0, 0, Vector2(1, 0.018868), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="Lagoon_effects_bubble" type="CPUParticles2D"]
+amount = 120
+texture = ExtResource("1_i7n5g")
+emission_shape = 1
+emission_sphere_radius = 128.0
+spread = 180.0
+gravity = Vector2(40, -20)
+scale_amount_curve = SubResource("Curve_itkqy")
+color = Color(0, 0.419608, 1, 1)

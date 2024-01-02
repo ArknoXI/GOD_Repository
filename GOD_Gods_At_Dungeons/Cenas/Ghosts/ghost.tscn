@@ -1,0 +1,32 @@
+[gd_scene load_steps=7 format=3 uid="uid://bqtx8r0h6fcwv"]
+
+[ext_resource type="Shader" path="res://Cenas/Shaders/Flash.gdshader" id="1_8y5c1"]
+[ext_resource type="Script" path="res://Cenas/Ghosts/Ghost_sprite.gd" id="2_10n6q"]
+[ext_resource type="Texture2D" uid="uid://b87dok6oqlpb1" path="res://Player/Sprites/Body_Colors/Style_01/Body_Gray.png" id="3_2bhtw"]
+[ext_resource type="Texture2D" uid="uid://byqd125y1excd" path="res://Player/Sprites/GoB/Head/Head_GoB.png" id="3_36luw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2itd0"]
+shader = ExtResource("1_8y5c1")
+shader_parameter/is_active = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pd75x"]
+
+[node name="Ghost" type="Sprite2D"]
+modulate = Color(0.827451, 0.376471, 1, 1)
+show_behind_parent = true
+material = SubResource("ShaderMaterial_2itd0")
+texture = ExtResource("3_2bhtw")
+offset = Vector2(-0.5, -17)
+hframes = 6
+vframes = 10
+frame = 6
+script = ExtResource("2_10n6q")
+
+[node name="Head" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_pd75x")
+use_parent_material = true
+texture = ExtResource("3_36luw")
+offset = Vector2(-0.5, -17)
+hframes = 6
+vframes = 10
+frame = 8

@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cfvrouhqe0t34"]
+
+[ext_resource type="Script" path="res://Cenas/Features/Skills/Dagger/wings_dagger_projectile.gd" id="1_4rq0c"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n6pis"]
+
+[node name="dagger_wings_projectile" type="CharacterBody2D"]
+script = ExtResource("1_4rq0c")
+
+[node name="Collision_area" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_n6pis")
+
+[node name="Texture" type="Sprite2D" parent="Collision_area"]

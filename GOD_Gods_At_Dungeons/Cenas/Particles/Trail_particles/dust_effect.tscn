@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://dituub3f87h5e"]
+
+[ext_resource type="Texture2D" uid="uid://cub20c1ues60m" path="res://Cenas/Particles/Sprites/Particles-01.png" id="1_qd7bl"]
+
+[sub_resource type="Curve" id="Curve_s4cs0"]
+_data = [Vector2(0, 0.124528), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_bdpo1"]
+offsets = PackedFloat32Array(0, 0.839286)
+colors = PackedColorArray(0.596853, 1.62441e-06, 4.33177e-07, 1, 1, 1, 1, 1)
+
+[node name="DustEffect" type="CPUParticles2D"]
+top_level = true
+position = Vector2(216, 0)
+rotation = 1.5708
+amount = 32
+lifetime = 5.0
+texture = ExtResource("1_qd7bl")
+emission_shape = 3
+emission_rect_extents = Vector2(1, 216)
+spread = 90.0
+gravity = Vector2(0, 240)
+initial_velocity_min = 30.0
+initial_velocity_max = 65.0
+scale_amount_curve = SubResource("Curve_s4cs0")
+color_ramp = SubResource("Gradient_bdpo1")

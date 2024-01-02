@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://dusrf6hy1uxl6"]
+
+[ext_resource type="Texture2D" uid="uid://cub20c1ues60m" path="res://Cenas/Particles/Sprites/Particles-01.png" id="1_57o8p"]
+[ext_resource type="PackedScene" uid="uid://cfpoy2uoslmr5" path="res://Cenas/Particles/delete_effect.tscn" id="2_f7c50"]
+
+[sub_resource type="Curve" id="Curve_d6ds4"]
+_data = [Vector2(0, 0.0641509), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="Bow_Explosion" type="CPUParticles2D"]
+emitting = false
+amount = 10
+lifetime = 0.6
+one_shot = true
+explosiveness = 0.5
+texture = ExtResource("1_57o8p")
+emission_shape = 1
+emission_sphere_radius = 32.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 60.0
+initial_velocity_max = 120.0
+scale_amount_curve = SubResource("Curve_d6ds4")
+color = Color(1, 1, 0, 1)
+
+[node name="Delete_effect" parent="." instance=ExtResource("2_f7c50")]
+wait_time = 0.7

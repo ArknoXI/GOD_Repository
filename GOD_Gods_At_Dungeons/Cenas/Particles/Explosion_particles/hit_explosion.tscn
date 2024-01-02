@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://dhwq820u110hq"]
+
+[ext_resource type="Texture2D" uid="uid://cxqf3lrptlpwb" path="res://Cenas/Particles/Sprites/Particles-08.png" id="1_wq7nb"]
+[ext_resource type="PackedScene" uid="uid://cfpoy2uoslmr5" path="res://Cenas/Particles/delete_effect.tscn" id="2_mlsnd"]
+
+[sub_resource type="Curve" id="Curve_qtlvd"]
+_data = [Vector2(0, 0.0177935), 0.0, 2.22514, 0, 0, Vector2(0.314815, 0.160142), 0.0, 0.0, 0, 0, Vector2(0.551852, 0.074733), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[node name="CPUParticles2D" type="CPUParticles2D"]
+emitting = false
+amount = 16
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+texture = ExtResource("1_wq7nb")
+emission_shape = 1
+emission_sphere_radius = 32.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 60.0
+initial_velocity_max = 150.0
+scale_amount_curve = SubResource("Curve_qtlvd")
+
+[node name="Delete_effect" parent="." instance=ExtResource("2_mlsnd")]
+wait_time = 0.7

@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://b0575r84hm8yv"]
+
+[ext_resource type="PackedScene" uid="uid://cp4ds2pxuam2d" path="res://Weapons/Weapon_Scenes/weapon_template.tscn" id="1_ykk4g"]
+[ext_resource type="Script" path="res://Weapons/Weapons_Prefab/Bow/bow.gd" id="2_8v4r4"]
+[ext_resource type="Texture2D" uid="uid://b87dok6oqlpb1" path="res://Player/Sprites/Body_Colors/Style_01/Body_Gray.png" id="2_15ens"]
+[ext_resource type="Texture2D" uid="uid://bjrxcnlss08hx" path="res://Player/Sprites/GoL/Head/Head_GoL.png" id="3_mcch0"]
+
+[node name="Bow" instance=ExtResource("1_ykk4g")]
+position = Vector2(40, 42)
+script = ExtResource("2_8v4r4")
+Fire_Projectile = null
+is_attacking = null
+
+[node name="WeaponTexture" parent="." index="0"]
+position = Vector2(12, -8)
+region_rect = Rect2(256, 32, 16, 16)
+
+[node name="SpriteTeste" type="Sprite2D" parent="." index="3"]
+texture = ExtResource("2_15ens")
+offset = Vector2(-0.5, -17)
+hframes = 6
+vframes = 10
+
+[node name="SpriteTeste_" type="Sprite2D" parent="." index="4"]
+texture = ExtResource("3_mcch0")
+offset = Vector2(-0.5, -17)
+hframes = 6
+vframes = 10

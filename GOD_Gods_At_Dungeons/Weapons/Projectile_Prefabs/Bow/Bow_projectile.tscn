@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3 uid="uid://bskc7bw7x0qo3"]
+
+[ext_resource type="PackedScene" uid="uid://d2lw1duviosta" path="res://Weapons/Projectile_Prefabs/projectile.tscn" id="1_u5ax7"]
+[ext_resource type="Texture2D" uid="uid://bn5hsdgapshub" path="res://Weapons/Sprites/RPG Weapons Dark Outline.png" id="2_i4a3h"]
+[ext_resource type="PackedScene" uid="uid://dusrf6hy1uxl6" path="res://Cenas/Particles/Explosion_particles/bow_explosion.tscn" id="2_qs8bn"]
+[ext_resource type="PackedScene" uid="uid://ug3j0umwj3rl" path="res://Cenas/Particles/Trail_particles/bow_trail.tscn" id="3_nexu4"]
+
+[sub_resource type="Curve" id="Curve_kei1w"]
+_data = [Vector2(0, 0.0792453), 0.0, 0.0, 0, 0, Vector2(0.110714, 0.411321), 0.0, 0.0, 0, 0, Vector2(0.982143, 0.139623), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ypx7i"]
+size = Vector2(20, 4)
+
+[node name="Projectile" instance=ExtResource("1_u5ax7")]
+scale = Vector2(0.6, 0.6)
+Speed = 200.0
+blast_scene = ExtResource("2_qs8bn")
+hit_rgb = Color(1, 1, 0, 1)
+
+[node name="Line2D" type="Line2D" parent="." index="0"]
+position = Vector2(5, 0)
+points = PackedVector2Array(-25, 0, -10, 0, 0, 0)
+width_curve = SubResource("Curve_kei1w")
+default_color = Color(1, 1, 0, 1)
+
+[node name="Texture" parent="." index="1"]
+rotation = 0.785398
+texture = ExtResource("2_i4a3h")
+region_enabled = true
+region_rect = Rect2(224, 128, 16, 16)
+
+[node name="CollisionShape2D" parent="." index="2"]
+visible = false
+shape = SubResource("RectangleShape2D_ypx7i")
+
+[node name="Duration" parent="." index="4"]
+wait_time = 2.0
+autostart = true
+
+[node name="CanTouch" type="Timer" parent="." index="5"]
+wait_time = 0.1
+one_shot = true
+autostart = true
+
+[node name="Bow_Trail" parent="." index="6" instance=ExtResource("3_nexu4")]
+position = Vector2(-8.33333, 0)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Duration" to="." method="_on_duration_timeout"]
+[connection signal="timeout" from="CanTouch" to="." method="_on_can_touch_timeout"]

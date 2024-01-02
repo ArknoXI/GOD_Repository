@@ -1,0 +1,55 @@
+[gd_scene load_steps=4 format=3 uid="uid://c2a7gp8giybfj"]
+
+[ext_resource type="Texture2D" uid="uid://colb2ywxujiug" path="res://Tilesets/Lagoon_TileSet.png" id="1_v3tc1"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ex318"]
+texture = ExtResource("1_v3tc1")
+1:1/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+4:2/0 = 0
+4:1/0 = 0
+3:1/0 = 0
+2:1/0 = 0
+3:2/0 = 0
+1:3/0 = 0
+6:0/0 = 0
+6:1/0 = 0
+6:2/0 = 0
+7:0/0 = 0
+7:1/0 = 0
+7:2/0 = 0
+8:0/0 = 0
+8:1/0 = 0
+8:2/0 = 0
+9:0/0 = 0
+9:1/0 = 0
+9:2/0 = 0
+0:0/0 = 0
+0:1/0 = 0
+0:2/0 = 0
+0:3/0 = 0
+0:4/0 = 0
+1:0/0 = 0
+1:4/0 = 0
+2:0/0 = 0
+2:4/0 = 0
+3:0/0 = 0
+3:4/0 = 0
+4:0/0 = 0
+4:4/0 = 0
+5:0/0 = 0
+5:1/0 = 0
+5:2/0 = 0
+5:3/0 = 0
+5:4/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_6ie5m"]
+sources/0 = SubResource("TileSetAtlasSource_ex318")
+
+[node name="Lagoon_tilemap" type="TileMap"]
+tile_set = SubResource("TileSet_6ie5m")
+format = 2

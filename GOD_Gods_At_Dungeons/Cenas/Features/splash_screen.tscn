@@ -1,0 +1,52 @@
+[gd_scene load_steps=3 format=3 uid="uid://bc80s6yxmmybt"]
+
+[ext_resource type="Texture2D" uid="uid://cob4uyjux3ks4" path="res://UI/UI_sprite/Logo.png" id="1_2nrq5"]
+[ext_resource type="Script" path="res://Cenas/Features/splash_screen.gd" id="1_5rcvf"]
+
+[node name="SplashScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5rcvf")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.141176, 0.141176, 0.141176, 1)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+autostart = true
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 120.0
+offset_top = 67.7
+offset_right = 120.0
+offset_bottom = 67.7
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+theme_override_constants/margin_left = 45
+theme_override_constants/margin_top = 45
+theme_override_constants/margin_right = 45
+theme_override_constants/margin_bottom = 45
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer"]
+layout_mode = 2
+texture = ExtResource("1_2nrq5")
+expand_mode = 1
+stretch_mode = 5
+
+[connection signal="timeout" from="Timer" to="." method="on_timer_timeout"]

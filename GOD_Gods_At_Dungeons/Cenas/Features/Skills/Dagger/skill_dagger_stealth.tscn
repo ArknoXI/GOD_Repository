@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://dq31an0pv1buy"]
+
+[ext_resource type="Script" path="res://Cenas/Features/Skills/Dagger/skill_dagger_stealth.gd" id="1_hqtqy"]
+[ext_resource type="PackedScene" uid="uid://c23203rj0ud8m" path="res://Cenas/Features/Skills/skill_icon.tscn" id="2_w5hrn"]
+[ext_resource type="Texture2D" uid="uid://bpfj8lec1h1cv" path="res://Cenas/Features/Skills/Dagger/Icon/37.png" id="3_8wdex"]
+[ext_resource type="Texture2D" uid="uid://bgs43m7v172hh" path="res://Cenas/Features/Skills/Dagger/Icon/3.png" id="3_gxvs6"]
+
+[node name="Skill_Dagger_Stealth" type="Node2D" node_paths=PackedStringArray("cooldown") groups=["Dagger_stealth"]]
+script = ExtResource("1_hqtqy")
+cooldown = NodePath("Cooldown")
+
+[node name="Cooldown" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="Skill_Icon" parent="." instance=ExtResource("2_w5hrn")]
+
+[node name="Supreme" parent="Skill_Icon/HBoxContainer" index="0"]
+modulate = Color(1, 1, 1, 0)
+
+[node name="TextureProgressBar" parent="Skill_Icon/HBoxContainer/Supreme" index="0"]
+texture_progress = ExtResource("3_gxvs6")
+
+[node name="TextureProgressBar" parent="Skill_Icon/HBoxContainer/Skill" index="0"]
+texture_progress = ExtResource("3_8wdex")
+
+[node name="E" parent="Skill_Icon" index="1"]
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+
+[node name="Q" parent="Skill_Icon" index="2"]
+modulate = Color(1, 1, 1, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+
+[editable path="Skill_Icon"]

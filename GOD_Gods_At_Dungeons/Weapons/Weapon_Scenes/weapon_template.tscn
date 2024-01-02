@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://cp4ds2pxuam2d"]
+
+[ext_resource type="Texture2D" uid="uid://bn5hsdgapshub" path="res://Weapons/Sprites/RPG Weapons Dark Outline.png" id="1_ewadn"]
+
+[node name="WeaponTemplate" type="Node2D"]
+
+[node name="WeaponTexture" type="Sprite2D" parent="."]
+texture = ExtResource("1_ewadn")
+region_enabled = true
+
+[node name="Arm_1" type="Sprite2D" parent="."]
+
+[node name="Arm_2" type="Sprite2D" parent="."]

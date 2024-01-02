@@ -1,0 +1,72 @@
+[gd_scene load_steps=3 format=3 uid="uid://c23203rj0ud8m"]
+
+[ext_resource type="Texture2D" uid="uid://dm1cgs7i4o77x" path="res://UI/Menu_UI/Border All 8.png" id="1_c5831"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_e3rl3"]
+texture = ExtResource("1_c5831")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+region_rect = Rect2(512, 0, 64, 64)
+
+[node name="Skill_Icon" type="CanvasLayer"]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -30.0
+offset_right = 144.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.25, 0.25)
+
+[node name="Supreme" type="PanelContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxTexture_e3rl3")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="HBoxContainer/Supreme"]
+layout_mode = 2
+max_value = 3.0
+step = 0.01
+value = 3.0
+fill_mode = 3
+
+[node name="Skill" type="PanelContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxTexture_e3rl3")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="HBoxContainer/Skill"]
+layout_mode = 2
+max_value = 3.0
+step = 0.01
+value = 3.0
+fill_mode = 3
+
+[node name="E" type="Label" parent="."]
+offset_left = 242.0
+offset_top = 240.0
+offset_right = 306.0
+offset_bottom = 257.0
+theme_override_font_sizes/font_size = 12
+text = "E
+"
+
+[node name="Q" type="Label" parent="."]
+offset_left = 221.0
+offset_top = 240.0
+offset_right = 285.0
+offset_bottom = 257.0
+theme_override_font_sizes/font_size = 12
+text = "Q
+
+"

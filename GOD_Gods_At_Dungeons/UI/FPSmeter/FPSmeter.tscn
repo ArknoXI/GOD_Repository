@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://vbc1vmodcsiw"]
+
+[ext_resource type="Script" path="res://UI/FPSmeter/Label.gd" id="1_ubx28"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+layer = 2
+
+[node name="FPSlabel" type="Label" parent="."]
+top_level = true
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = -12.0
+offset_right = 58.0
+offset_bottom = 14.0
+grow_vertical = 0
+scale = Vector2(0.371604, 0.336348)
+text = "FPS: 60"
+horizontal_alignment = 1
+script = ExtResource("1_ubx28")

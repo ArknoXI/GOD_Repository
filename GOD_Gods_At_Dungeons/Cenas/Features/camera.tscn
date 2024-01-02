@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://b3sswwm8j3hxr"]
+
+[ext_resource type="Script" path="res://Cenas/Features/Camera2D.gd" id="1_2uj86"]
+[ext_resource type="PackedScene" uid="uid://jtshn4jw3arp" path="res://Cenas/Shaders/vignette.tscn" id="2_n7hnn"]
+[ext_resource type="PackedScene" uid="uid://dituub3f87h5e" path="res://Cenas/Particles/Trail_particles/dust_effect.tscn" id="3_tmc5f"]
+[ext_resource type="Shader" path="res://Cenas/Shaders/vignette.gdshader" id="4_4ei6y"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2tifs"]
+resource_local_to_scene = true
+shader = ExtResource("4_4ei6y")
+shader_parameter/vignette_intensity = 0.6
+shader_parameter/vignette_opacity = 0.671
+shader_parameter/vignette_rgb = Color(0, 0, 0, 1)
+
+[node name="Camera" type="Camera2D" node_paths=PackedStringArray("Vignette") groups=["Camera_player"]]
+script = ExtResource("1_2uj86")
+Vignette = NodePath("CanvasLayer/Vignette")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="DustEffect" parent="CanvasLayer" instance=ExtResource("3_tmc5f")]
+amount = 100
+lifetime = 2.0
+direction = Vector2(0, 0)
+color = Color(0.698039, 0.133333, 0.133333, 1)
+color_ramp = null
+
+[node name="Vignette" parent="CanvasLayer" instance=ExtResource("2_n7hnn")]
+material = SubResource("ShaderMaterial_2tifs")
+mouse_filter = 2

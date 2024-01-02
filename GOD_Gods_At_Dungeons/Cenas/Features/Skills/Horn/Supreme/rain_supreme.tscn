@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://djuxil5rsywae"]
+
+[ext_resource type="Script" path="res://Cenas/Features/Skills/Horn/Supreme/rain_supreme.gd" id="1_684dx"]
+[ext_resource type="PackedScene" uid="uid://c22bsd117csqv" path="res://Cenas/Features/Skills/Horn/Supreme/rain_projectile.tscn" id="2_gvvuu"]
+[ext_resource type="PackedScene" uid="uid://bcg0j5qyw2cya" path="res://Cenas/Particles/Explosion_particles/lagoon_effects_bubble.tscn" id="3_y60ua"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gcjwd"]
+radius = 130.0
+
+[node name="Rain_supreme" type="Node2D"]
+script = ExtResource("1_684dx")
+prefab_rain = ExtResource("2_gvvuu")
+
+[node name="Rain_area" type="Area2D" parent="."]
+collision_mask = 14
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rain_area"]
+shape = SubResource("CircleShape2D_gcjwd")
+
+[node name="Rain_time_on_enemy" type="Timer" parent="."]
+autostart = true
+
+[node name="Rain_time_random" type="Timer" parent="."]
+wait_time = 0.6
+autostart = true
+
+[node name="Lagoon_effects_bubble" parent="." instance=ExtResource("3_y60ua")]
+
+[connection signal="body_entered" from="Rain_area" to="." method="_on_body_entered"]
+[connection signal="body_exited" from="Rain_area" to="." method="_on_body_exited"]
+[connection signal="timeout" from="Rain_time_on_enemy" to="." method="_on_rain_time_timeout"]
+[connection signal="timeout" from="Rain_time_random" to="." method="_on_rain_time_random_timeout"]

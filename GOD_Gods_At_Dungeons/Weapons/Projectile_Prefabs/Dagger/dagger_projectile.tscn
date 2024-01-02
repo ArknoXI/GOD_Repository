@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://krnritebf8dk"]
+
+[ext_resource type="PackedScene" uid="uid://d2lw1duviosta" path="res://Weapons/Projectile_Prefabs/projectile.tscn" id="1_mwsj2"]
+[ext_resource type="Texture2D" uid="uid://bn5hsdgapshub" path="res://Weapons/Sprites/RPG Weapons Dark Outline.png" id="2_cgm8g"]
+[ext_resource type="PackedScene" uid="uid://d4a226xmyckti" path="res://Cenas/Particles/Explosion_particles/dagger_ghost.tscn" id="2_m080a"]
+[ext_resource type="PackedScene" uid="uid://bwm2jqka5sap1" path="res://Cenas/Particles/Trail_particles/dagger_trail_projectile.tscn" id="4_ig6f7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_usgun"]
+size = Vector2(13, 4)
+
+[node name="dagger_projectile" instance=ExtResource("1_mwsj2")]
+collision_layer = 32
+collision_mask = 9
+blast_scene = ExtResource("2_m080a")
+hit_rgb = Color(1, 1, 1, 1)
+
+[node name="Texture" parent="." index="0"]
+position = Vector2(9, 0)
+rotation = 0.785398
+texture = ExtResource("2_cgm8g")
+region_enabled = true
+region_rect = Rect2(32, 48, 16, 16)
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(5, 0)
+shape = SubResource("RectangleShape2D_usgun")
+
+[node name="Duration" parent="." index="3"]
+wait_time = 0.6
+one_shot = true
+autostart = true
+
+[node name="CanTouch" type="Timer" parent="." index="4"]
+wait_time = 0.1
+one_shot = true
+autostart = true
+
+[node name="dagger_trail_projectile" parent="." index="5" instance=ExtResource("4_ig6f7")]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Duration" to="." method="_on_duration_timeout"]
+[connection signal="timeout" from="CanTouch" to="." method="_on_can_touch_timeout"]

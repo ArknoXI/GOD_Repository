@@ -1,0 +1,207 @@
+[gd_scene load_steps=17 format=3 uid="uid://e1wseks2ttps"]
+
+[ext_resource type="Script" path="res://Weapons/Weapons_Prefab/Dagger/dagger_anim.gd" id="1_epdk8"]
+[ext_resource type="PackedScene" uid="uid://ya3jg6s3rt2u" path="res://Weapons/Weapons_Prefab/Dagger/dagger_throw.tscn" id="1_ht5ki"]
+[ext_resource type="PackedScene" uid="uid://dq31an0pv1buy" path="res://Cenas/Features/Skills/Dagger/skill_dagger_stealth.tscn" id="3_x6us3"]
+[ext_resource type="PackedScene" uid="uid://b1uswie1i4m2g" path="res://Cenas/Features/Skills/Dagger/supreme_dagger_wings.tscn" id="4_nvw2p"]
+
+[sub_resource type="Animation" id="Animation_212bq"]
+resource_name = "Down"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Dagger_Throw2:z_index")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Dagger_Throw:z_index")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+
+[sub_resource type="Animation" id="Animation_dq11o"]
+resource_name = "Left"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Dagger_Throw2:z_index")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Dagger_Throw:z_index")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+
+[sub_resource type="Animation" id="Animation_ecym4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Dagger_Throw2:z_index")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Dagger_Throw:z_index")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_pwrq8"]
+resource_name = "Right"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Dagger_Throw2:z_index")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Dagger_Throw:z_index")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+
+[sub_resource type="Animation" id="Animation_6efux"]
+resource_name = "Up"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Dagger_Throw2:z_index")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Dagger_Throw:z_index")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tw6sy"]
+_data = {
+"Down": SubResource("Animation_212bq"),
+"Left": SubResource("Animation_dq11o"),
+"RESET": SubResource("Animation_ecym4"),
+"Right": SubResource("Animation_pwrq8"),
+"Up": SubResource("Animation_6efux")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_56y0e"]
+animation = &"Up"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wyn7u"]
+animation = &"Down"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_obqhl"]
+animation = &"Right"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_o2ij3"]
+animation = &"Left"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_2bd1h"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_56y0e")
+blend_point_0/pos = Vector2(0, -1)
+blend_point_1/node = SubResource("AnimationNodeAnimation_wyn7u")
+blend_point_1/pos = Vector2(0, 1)
+blend_point_2/node = SubResource("AnimationNodeAnimation_obqhl")
+blend_point_2/pos = Vector2(1, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_o2ij3")
+blend_point_3/pos = Vector2(-1, 0)
+blend_mode = 1
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_dx5y4"]
+states/Idle/node = SubResource("AnimationNodeBlendSpace2D_2bd1h")
+states/Idle/position = Vector2(540, 62)
+states/Start/position = Vector2(256, 102.074)
+
+[node name="Dagger_" type="Node2D"]
+script = ExtResource("1_epdk8")
+
+[node name="Dagger_Throw" parent="." instance=ExtResource("1_ht5ki")]
+position = Vector2(8, 0)
+
+[node name="Dagger_Throw2" parent="." instance=ExtResource("1_ht5ki")]
+
+[node name="Anim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_tw6sy")
+}
+
+[node name="Tree" type="AnimationTree" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_tw6sy")
+}
+tree_root = SubResource("AnimationNodeStateMachine_dx5y4")
+anim_player = NodePath("../Anim")
+parameters/Idle/blend_position = Vector2(0, 0)
+
+[node name="Skill" type="Node2D" parent="."]
+
+[node name="Skill_Dagger_Stealth" parent="Skill" instance=ExtResource("3_x6us3")]
+
+[node name="Supreme" type="Node2D" parent="."]
+
+[node name="Supreme_dagger_wings" parent="Supreme" instance=ExtResource("4_nvw2p")]

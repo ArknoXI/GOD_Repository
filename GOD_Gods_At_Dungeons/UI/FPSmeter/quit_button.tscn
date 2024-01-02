@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://bejaaas3bqqdi"]
+
+[ext_resource type="Script" path="res://UI/FPSmeter/Button.gd" id="1_nl4h3"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+layer = 100
+
+[node name="Button" type="Button" parent="."]
+top_level = true
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -19.0
+offset_right = 19.0
+offset_bottom = 31.0
+grow_horizontal = 2
+scale = Vector2(0.564109, 0.500386)
+focus_mode = 0
+text = "Sair"
+script = ExtResource("1_nl4h3")
+
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]

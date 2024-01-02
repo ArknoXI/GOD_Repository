@@ -1,0 +1,153 @@
+[gd_scene load_steps=9 format=3 uid="uid://tdki48kjfcx4"]
+
+[ext_resource type="Script" path="res://Weapons/Projectile_Prefabs/Projectile.gd" id="1_lcy4l"]
+[ext_resource type="Texture2D" uid="uid://dgtykf2x2myn4" path="res://Weapons/Projectile_Sprites/Retro Impact Effect Pack 3 C.png" id="1_oin0q"]
+[ext_resource type="Texture2D" uid="uid://c4ncer6ecdbdb" path="res://Cenas/Particles/Sprites/Particles-07.png" id="3_l34k0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vdsoi"]
+radius = 15.0
+
+[sub_resource type="Animation" id="Animation_0534j"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [108]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Texture:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CollisionShape2D:shape:radius")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [15.0]
+}
+
+[sub_resource type="Animation" id="Animation_8cgyn"]
+resource_name = "rain_impact"
+length = 0.6
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [108, 109, 110, 111, 112, 113]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"delete"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Texture:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.5, 1.5)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CollisionShape2D:shape:radius")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [10.0, 15.0, 20.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_phfab"]
+_data = {
+"RESET": SubResource("Animation_0534j"),
+"rain_impact": SubResource("Animation_8cgyn")
+}
+
+[sub_resource type="Curve" id="Curve_lytbt"]
+_data = [Vector2(0, 0.290566), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="Supreme_rain_projectile" type="Area2D"]
+script = ExtResource("1_lcy4l")
+estatico = true
+persistent = true
+hit_rgb = Color(0, 0.85098, 0.976471, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_vdsoi")
+
+[node name="Texture" type="Sprite2D" parent="."]
+texture = ExtResource("1_oin0q")
+hframes = 6
+vframes = 24
+frame = 108
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_phfab")
+}
+autoplay = "rain_impact"
+
+[node name="effect" type="CPUParticles2D" parent="."]
+modulate = Color(0.65098, 0.988235, 0.858824, 1)
+show_behind_parent = true
+emitting = false
+amount = 64
+one_shot = true
+explosiveness = 0.8
+texture = ExtResource("3_l34k0")
+emission_shape = 1
+emission_sphere_radius = 16.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, -100)
+initial_velocity_min = 60.0
+initial_velocity_max = 60.0
+scale_amount_curve = SubResource("Curve_lytbt")
+color = Color(0, 1, 1, 1)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

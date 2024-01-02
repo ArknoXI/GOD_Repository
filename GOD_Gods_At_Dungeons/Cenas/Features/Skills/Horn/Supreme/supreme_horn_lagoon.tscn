@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://dv7iwrnag7pil"]
+
+[ext_resource type="Script" path="res://Cenas/Features/Skills/Horn/Supreme/supreme_horn_lagoon.gd" id="1_gfvdf"]
+[ext_resource type="PackedScene" uid="uid://djuxil5rsywae" path="res://Cenas/Features/Skills/Horn/Supreme/rain_supreme.tscn" id="2_4brjp"]
+[ext_resource type="PackedScene" uid="uid://c23203rj0ud8m" path="res://Cenas/Features/Skills/skill_icon.tscn" id="2_5o2vs"]
+[ext_resource type="Texture2D" uid="uid://bjbfnlgg75hrc" path="res://Cenas/Features/Skills/Horn/Icon/32.png" id="3_g7spt"]
+[ext_resource type="Texture2D" uid="uid://cas8xc6dqtooi" path="res://Cenas/Features/Skills/Horn/Icon/08.png" id="4_j4b12"]
+
+[node name="Supreme_Horn_lagoon" type="Node2D" node_paths=PackedStringArray("cooldown")]
+script = ExtResource("1_gfvdf")
+Prefab_horn = ExtResource("2_4brjp")
+Duration = 10.0
+cooldown_time = 15.0
+cooldown = NodePath("Cooldown")
+cor = Color(1, 1, 1, 0)
+
+[node name="Cooldown" type="Timer" parent="."]
+one_shot = true
+
+[node name="Skill_Icon" parent="." instance=ExtResource("2_5o2vs")]
+
+[node name="TextureProgressBar" parent="Skill_Icon/HBoxContainer/Supreme" index="0"]
+texture_progress = ExtResource("3_g7spt")
+
+[node name="TextureProgressBar" parent="Skill_Icon/HBoxContainer/Skill" index="0"]
+modulate = Color(1, 1, 1, 0)
+texture_progress = ExtResource("4_j4b12")
+
+[node name="E" parent="Skill_Icon" index="1"]
+modulate = Color(1, 1, 1, 0)
+
+[editable path="Skill_Icon"]

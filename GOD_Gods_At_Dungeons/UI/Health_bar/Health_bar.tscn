@@ -1,0 +1,59 @@
+[gd_scene load_steps=9 format=3 uid="uid://chq54hougvlwe"]
+
+[ext_resource type="Script" path="res://UI/Health_bar/Health_bar.gd" id="1_m1fvf"]
+[ext_resource type="Texture2D" uid="uid://c4k401jn6fm3l" path="res://UI/Health_bar/Bar_3/Red_ProgressBar.png" id="3_vo7nx"]
+[ext_resource type="Texture2D" uid="uid://3tktdf6pmnce" path="res://UI/Health_bar/Bar_3/Dark_under.png" id="4_prqjk"]
+[ext_resource type="Texture2D" uid="uid://bud5vycpyqx4m" path="res://UI/Health_bar/Bar_3/Yellow_ProgressBar.png" id="6_8qs4g"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3y3uw"]
+texture = ExtResource("4_prqjk")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pxpc3"]
+texture = ExtResource("3_vo7nx")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qaew2"]
+texture = ExtResource("4_prqjk")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_flbi8"]
+texture = ExtResource("6_8qs4g")
+
+[node name="Health_bar" type="Control" node_paths=PackedStringArray("bar", "ener_bar")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_m1fvf")
+bar = NodePath("Health")
+ener_bar = NodePath("Dash")
+
+[node name="Health" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_left = -132.0
+offset_top = -59.0
+offset_right = 140.0
+offset_bottom = -38.0
+scale = Vector2(0.1, 0.1)
+pivot_offset = Vector2(132.004, 56.0423)
+theme_override_styles/background = SubResource("StyleBoxTexture_3y3uw")
+theme_override_styles/fill = SubResource("StyleBoxTexture_pxpc3")
+step = 1.0
+value = 100.0
+rounded = true
+show_percentage = false
+
+[node name="Dash" type="ProgressBar" parent="."]
+visible = false
+layout_mode = 0
+offset_left = -132.0
+offset_top = -56.0
+offset_right = 140.0
+offset_bottom = -35.0
+scale = Vector2(0.1, 0.1)
+pivot_offset = Vector2(132.004, 56.0423)
+theme_override_styles/background = SubResource("StyleBoxTexture_qaew2")
+theme_override_styles/fill = SubResource("StyleBoxTexture_flbi8")
+max_value = 1.0
+value = 1.0
+show_percentage = false

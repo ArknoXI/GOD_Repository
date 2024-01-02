@@ -1,0 +1,101 @@
+[gd_scene load_steps=9 format=3 uid="uid://b1uswie1i4m2g"]
+
+[ext_resource type="Script" path="res://Cenas/Features/Skills/Dagger/supreme_dagger_wings.gd" id="1_2vq5p"]
+[ext_resource type="PackedScene" uid="uid://bpsuh2fr0bwdh" path="res://Cenas/Features/Skills/Dagger/wings_dagger_projectile.tscn" id="2_qihf4"]
+[ext_resource type="PackedScene" uid="uid://c23203rj0ud8m" path="res://Cenas/Features/Skills/skill_icon.tscn" id="2_qiqxs"]
+[ext_resource type="Texture2D" uid="uid://eebeu7vkn2tw" path="res://Cenas/Features/Skills/Dagger/Icon/34.png" id="4_2p18g"]
+[ext_resource type="Texture2D" uid="uid://bpfj8lec1h1cv" path="res://Cenas/Features/Skills/Dagger/Icon/37.png" id="4_pcciv"]
+
+[sub_resource type="Animation" id="Animation_vbku0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Wings:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [6.28319]
+}
+
+[sub_resource type="Animation" id="Animation_ewqsm"]
+resource_name = "roll"
+length = 1.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Wings:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jqtuo"]
+_data = {
+"RESET": SubResource("Animation_vbku0"),
+"roll": SubResource("Animation_ewqsm")
+}
+
+[node name="Supreme_dagger_wings" type="Node2D" node_paths=PackedStringArray("cooldown") groups=["Dagger_wings"]]
+position = Vector2(4, 0)
+script = ExtResource("1_2vq5p")
+Prefab_dagger = ExtResource("2_qihf4")
+Duration = 15
+cooldown = NodePath("Cooldown")
+
+[node name="Cooldown" type="Timer" parent="."]
+one_shot = true
+
+[node name="Skill_Icon" parent="." instance=ExtResource("2_qiqxs")]
+
+[node name="TextureProgressBar" parent="Skill_Icon/HBoxContainer/Supreme" index="0"]
+max_value = 30.0
+value = 30.0
+texture_progress = ExtResource("4_2p18g")
+
+[node name="Skill" parent="Skill_Icon/HBoxContainer" index="1"]
+modulate = Color(1, 1, 1, 0)
+
+[node name="TextureProgressBar" parent="Skill_Icon/HBoxContainer/Skill" index="0"]
+texture_progress = ExtResource("4_pcciv")
+
+[node name="E" parent="Skill_Icon" index="1"]
+modulate = Color(1, 1, 1, 0)
+
+[node name="Q" parent="Skill_Icon" index="2"]
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+
+[node name="Wings" type="Node2D" parent="."]
+rotation = 6.28319
+
+[node name="Wing_1" type="Marker2D" parent="Wings"]
+position = Vector2(-25, 25)
+rotation = 2.44346
+
+[node name="Wing_2" type="Marker2D" parent="Wings"]
+position = Vector2(-25, -25)
+rotation = -2.44346
+
+[node name="Wing_3" type="Marker2D" parent="Wings"]
+position = Vector2(25, -25)
+rotation = -0.698132
+
+[node name="Wing_4" type="Marker2D" parent="Wings"]
+position = Vector2(25, 25)
+rotation = 0.698132
+
+[node name="Anim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_jqtuo")
+}
+
+[editable path="Skill_Icon"]

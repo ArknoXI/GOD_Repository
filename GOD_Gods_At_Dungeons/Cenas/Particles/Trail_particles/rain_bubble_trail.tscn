@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://d3gw1bmpbq38q"]
+
+[ext_resource type="Texture2D" uid="uid://cxqf3lrptlpwb" path="res://Cenas/Particles/Sprites/Particles-08.png" id="1_waxhn"]
+
+[sub_resource type="Curve" id="Curve_m88u2"]
+_data = [Vector2(0, 0.562264), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_topd6"]
+colors = PackedColorArray(0, 1, 1, 1, 1, 1, 1, 1)
+
+[node name="Rain_bubble_trail" type="CPUParticles2D"]
+show_behind_parent = true
+amount = 12
+lifetime = 0.5
+texture = ExtResource("1_waxhn")
+emission_shape = 1
+emission_sphere_radius = 4.0
+gravity = Vector2(0, 0)
+scale_amount_curve = SubResource("Curve_m88u2")
+color_ramp = SubResource("Gradient_topd6")

@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://bmkcd84atvyxd"]
+
+[ext_resource type="Texture2D" uid="uid://bn5hsdgapshub" path="res://Weapons/Sprites/RPG Weapons Dark Outline.png" id="1_31hj8"]
+[ext_resource type="Script" path="res://Weapons/Projectile_Prefabs/dagger_fade.gd" id="2_bsesq"]
+
+[node name="Dagger_Fade" type="Node2D"]
+script = ExtResource("2_bsesq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(4.76837e-07, -4.76837e-07)
+rotation = 0.785398
+texture = ExtResource("1_31hj8")
+region_enabled = true
+region_rect = Rect2(32, 48, 16, 16)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.5
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

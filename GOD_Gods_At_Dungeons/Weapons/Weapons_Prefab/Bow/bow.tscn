@@ -1,0 +1,309 @@
+[gd_scene load_steps=20 format=3 uid="uid://b0575r84hm8yv"]
+
+[ext_resource type="PackedScene" uid="uid://cp4ds2pxuam2d" path="res://Weapons/Weapon_Scenes/weapon_template.tscn" id="1_ykk4g"]
+[ext_resource type="Script" path="res://Weapons/Weapons_Prefab/Bow/bow.gd" id="2_8v4r4"]
+[ext_resource type="Texture2D" uid="uid://b87dok6oqlpb1" path="res://Player/Sprites/Body_Colors/Style_01/Body_Gray.png" id="2_15ens"]
+[ext_resource type="Texture2D" uid="uid://be1ygbe1wtr2t" path="res://Weapons/Sprites/Arm_player2.png" id="3_cj6c8"]
+[ext_resource type="PackedScene" uid="uid://bskc7bw7x0qo3" path="res://Weapons/Projectile_Prefabs/Bow/Bow_projectile.tscn" id="3_gei2w"]
+[ext_resource type="Texture2D" uid="uid://bjrxcnlss08hx" path="res://Player/Sprites/GoL/Head/Head_GoL.png" id="3_mcch0"]
+[ext_resource type="PackedScene" uid="uid://dusrf6hy1uxl6" path="res://Cenas/Particles/Explosion_particles/bow_explosion.tscn" id="4_g21ka"]
+[ext_resource type="Texture2D" uid="uid://bn5hsdgapshub" path="res://Weapons/Sprites/RPG Weapons Dark Outline.png" id="8_xvqha"]
+
+[sub_resource type="Animation" id="Animation_jtgkp"]
+resource_name = "Up"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WeaponTexture:z_index")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Arm_1:z_index")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Arm_2:z_index")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ArrowSprite:z_index")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+
+[sub_resource type="Animation" id="Animation_1cp08"]
+resource_name = "Down"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WeaponTexture:z_index")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Arm_1:z_index")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Arm_2:z_index")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ArrowSprite:z_index")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+
+[sub_resource type="Animation" id="Animation_eq8jy"]
+resource_name = "Right"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WeaponTexture:z_index")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Arm_1:z_index")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Arm_2:z_index")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ArrowSprite:z_index")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+
+[sub_resource type="Animation" id="Animation_pqdys"]
+resource_name = "Left"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WeaponTexture:z_index")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Arm_1:z_index")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Arm_2:z_index")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ArrowSprite:z_index")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pki3n"]
+_data = {
+"Down": SubResource("Animation_1cp08"),
+"Left": SubResource("Animation_pqdys"),
+"Right": SubResource("Animation_eq8jy"),
+"Up": SubResource("Animation_jtgkp")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_x44yd"]
+animation = &"Down"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fm7ep"]
+animation = &"Up"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tcgbr"]
+animation = &"Right"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wth1s"]
+animation = &"Left"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_kt1k4"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_x44yd")
+blend_point_0/pos = Vector2(0, 1)
+blend_point_1/node = SubResource("AnimationNodeAnimation_fm7ep")
+blend_point_1/pos = Vector2(0, -0.9)
+blend_point_2/node = SubResource("AnimationNodeAnimation_tcgbr")
+blend_point_2/pos = Vector2(1, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_wth1s")
+blend_point_3/pos = Vector2(-1, 0)
+blend_mode = 1
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_wubi4"]
+states/Idle/node = SubResource("AnimationNodeBlendSpace2D_kt1k4")
+states/Idle/position = Vector2(470.667, 107.333)
+
+[node name="Bow" instance=ExtResource("1_ykk4g")]
+script = ExtResource("2_8v4r4")
+Projectile = ExtResource("3_gei2w")
+particle_scene = ExtResource("4_g21ka")
+
+[node name="WeaponTexture" parent="." index="0"]
+z_index = 2
+position = Vector2(5, 0)
+region_rect = Rect2(256, 32, 16, 16)
+
+[node name="Arm_1" parent="." index="1"]
+z_index = 3
+position = Vector2(6, 3)
+texture = ExtResource("3_cj6c8")
+
+[node name="Arm_2" parent="." index="2"]
+z_index = 1
+position = Vector2(4, -3)
+texture = ExtResource("3_cj6c8")
+
+[node name="ArrowSprite" type="Sprite2D" parent="." index="3"]
+z_index = 6
+position = Vector2(7, 0)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("8_xvqha")
+region_enabled = true
+region_rect = Rect2(224, 128, 16, 16)
+
+[node name="SpriteTeste" type="Sprite2D" parent="." index="4"]
+visible = false
+texture = ExtResource("2_15ens")
+offset = Vector2(-0.5, -17)
+hframes = 6
+vframes = 10
+
+[node name="SpriteTeste_" type="Sprite2D" parent="." index="5"]
+visible = false
+texture = ExtResource("3_mcch0")
+offset = Vector2(-0.5, -17)
+hframes = 6
+vframes = 10
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="6"]
+libraries = {
+"": SubResource("AnimationLibrary_pki3n")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="7"]
+libraries = {
+"": SubResource("AnimationLibrary_pki3n")
+}
+tree_root = SubResource("AnimationNodeStateMachine_wubi4")
+anim_player = NodePath("../AnimationPlayer")
+parameters/Idle/blend_position = Vector2(0, 0)
+
+[node name="AttackTimer" type="Timer" parent="." index="8"]
+one_shot = true
+
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

@@ -1,0 +1,128 @@
+[gd_scene load_steps=9 format=3 uid="uid://jv8gpo5aqb6c"]
+
+[ext_resource type="PackedScene" uid="uid://d2lw1duviosta" path="res://Weapons/Projectile_Prefabs/projectile.tscn" id="1_t5y14"]
+[ext_resource type="Texture2D" uid="uid://dgtykf2x2myn4" path="res://Weapons/Projectile_Sprites/Retro Impact Effect Pack 3 C.png" id="2_27uev"]
+[ext_resource type="Texture2D" uid="uid://c4ncer6ecdbdb" path="res://Cenas/Particles/Sprites/Particles-07.png" id="3_llwww"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_e4ams"]
+radius = 8.0
+
+[sub_resource type="Animation" id="Animation_e04uh"]
+resource_name = "Blast"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [126, 127, 128, 129, 130, 131]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:shape:radius")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [8.0, 11.0, 14.0, 17.0]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"delete"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_rvfku"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [126]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:shape:radius")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [8.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ux08s"]
+_data = {
+"Blast": SubResource("Animation_e04uh"),
+"RESET": SubResource("Animation_rvfku")
+}
+
+[sub_resource type="Curve" id="Curve_hh0ti"]
+_data = [Vector2(0, 0.160142), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="Bard_Projectile" instance=ExtResource("1_t5y14")]
+collision_layer = 32
+collision_mask = 9
+estatico = true
+persistent = true
+hit_rgb = Color(0.65098, 0.988235, 0.858824, 1)
+
+[node name="Texture" parent="." index="0"]
+texture = ExtResource("2_27uev")
+hframes = 6
+vframes = 24
+frame = 126
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("CircleShape2D_e4ams")
+
+[node name="AnimationPlayer" parent="." index="2"]
+libraries = {
+"": SubResource("AnimationLibrary_ux08s")
+}
+autoplay = "Blast"
+
+[node name="effect" type="CPUParticles2D" parent="." index="4"]
+modulate = Color(0.65098, 0.988235, 0.858824, 1)
+show_behind_parent = true
+emitting = false
+one_shot = true
+explosiveness = 0.8
+texture = ExtResource("3_llwww")
+emission_shape = 1
+emission_sphere_radius = 16.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 60.0
+initial_velocity_max = 60.0
+scale_amount_curve = SubResource("Curve_hh0ti")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

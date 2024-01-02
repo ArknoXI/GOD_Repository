@@ -1,0 +1,561 @@
+[gd_scene load_steps=19 format=3 uid="uid://dm2ch27savdr7"]
+
+[ext_resource type="Script" path="res://UI/Menu_UI/Player_Select/class_select.gd" id="1_4btbq"]
+[ext_resource type="PackedScene" uid="uid://dr6fhr4h4umpd" path="res://Cenas/Global_Feature/new_tilemap.tscn" id="2_1gog0"]
+[ext_resource type="Theme" uid="uid://bh0jnxavcafuo" path="res://UI/Menu_UI/Themes/Menu_Theme.tres" id="2_t2gth"]
+[ext_resource type="Texture2D" uid="uid://dq1y0hdqbfcm3" path="res://Player/Sprites/GoA/Full_Body/God_of_Ash.png" id="3_joy8k"]
+[ext_resource type="Texture2D" uid="uid://bthjvdjfnjl41" path="res://Player/Sprites/GoB/Full_Body/Goddess_Of_Blades.png" id="4_ksyr4"]
+[ext_resource type="Texture2D" uid="uid://c4b3w53ymto0w" path="res://Player/Sprites/GoL/Full_Body/God_Of_The_Lagoon.png" id="5_rhv0r"]
+[ext_resource type="Texture2D" uid="uid://bd068pl3xcciq" path="res://Player/Sprites/Shadow/Shadow.png" id="6_kq3dg"]
+[ext_resource type="Texture2D" uid="uid://b87dok6oqlpb1" path="res://Player/Sprites/Body_Colors/Style_01/Body_Gray.png" id="7_nv837"]
+[ext_resource type="Texture2D" uid="uid://33cdoe3qmtay" path="res://Player/Sprites/GoA/Head/Head_GoA.png" id="8_n6l1d"]
+
+[sub_resource type="Animation" id="Animation_amse8"]
+resource_name = "Idle"
+length = 1.7
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 18, 19, 20, 21, 22, 23]
+}
+
+[sub_resource type="Animation" id="Animation_b13n3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6aex6"]
+_data = {
+"Idle": SubResource("Animation_amse8"),
+"RESET": SubResource("Animation_b13n3")
+}
+
+[sub_resource type="Animation" id="Animation_v0518"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+
+[sub_resource type="Animation" id="Animation_dsywi"]
+resource_name = "Side"
+length = 1.7
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [6, 7, 8, 9, 10, 11, 24, 25, 26, 27, 28, 29]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jqpsf"]
+_data = {
+"RESET": SubResource("Animation_v0518"),
+"Side": SubResource("Animation_dsywi")
+}
+
+[sub_resource type="Animation" id="Animation_soafd"]
+resource_name = "Back"
+length = 1.7
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [12, 13, 14, 15, 16, 17, 30, 31, 32, 33, 34, 35]
+}
+
+[sub_resource type="Animation" id="Animation_1nn71"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [12]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_276i1"]
+_data = {
+"Back": SubResource("Animation_soafd"),
+"RESET": SubResource("Animation_1nn71")
+}
+
+[node name="Class_Select" type="Control" node_paths=PackedStringArray("Head_Face", "Head_Side", "Head_Back", "Body_Face", "Body_Side", "Body_Back", "TITLE", "HP", "DAMAGE", "SPEED", "WEAPON", "BODY_COLOR")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4btbq")
+Head_Face = NodePath("MarginContainer/VBoxContainer/Details/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/Middle/Face_Head")
+Head_Side = NodePath("MarginContainer/VBoxContainer/Details/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/Middle/Side_Head")
+Head_Back = NodePath("MarginContainer/VBoxContainer/Details/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/Middle/Back_Head")
+Body_Face = NodePath("MarginContainer/VBoxContainer/Details/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/Middle/Face_Body")
+Body_Side = NodePath("MarginContainer/VBoxContainer/Details/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/Middle/Side_Body")
+Body_Back = NodePath("MarginContainer/VBoxContainer/Details/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/Middle/Back_Body")
+TITLE = NodePath("MarginContainer/VBoxContainer/Details/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/MarginContainer/PanelContainer/Title")
+HP = NodePath("MarginContainer/VBoxContainer/Details/VBoxContainer/MarginContainer/HBoxContainer/PanelContainer/StatsDetails/HP")
+DAMAGE = NodePath("MarginContainer/VBoxContainer/Details/VBoxContainer/MarginContainer/HBoxContainer/PanelContainer/StatsDetails/Damage")
+SPEED = NodePath("MarginContainer/VBoxContainer/Details/VBoxContainer/MarginContainer/HBoxContainer/PanelContainer/StatsDetails/Speed")
+WEAPON = NodePath("MarginContainer/VBoxContainer/Details/VBoxContainer/MarginContainer/HBoxContainer/PanelContainer/StatsDetails/Weapon_text")
+BODY_COLOR = NodePath("MarginContainer/VBoxContainer/Details/VBoxContainer/MarginContainer/HBoxContainer/PanelContainer2/VBoxContainer/BodyColor")
+
+[node name="New_tilemap" parent="." instance=ExtResource("2_1gog0")]
+layer_1/tile_data = PackedInt32Array(65537, 327680, 1, 131073, 262144, 2, 196609, 262144, 2, 262145, 262144, 2, 327681, 262144, 2, 393217, 262144, 2, 458753, 262144, 2, 524289, 262144, 2, 589825, 262144, 2, 655361, 262144, 2, 720897, 262144, 2, 786433, 262144, 2, 851969, 262144, 2, 917505, 262144, 2, 983041, 327680, 2, 65538, 393216, 0, 131074, 786432, 1, 196610, 720896, 2, 262146, 851968, 2, 327682, 720896, 0, 393218, 917504, 2, 458754, 917504, 1, 524290, 917504, 0, 589826, 917504, 1, 655362, 917504, 2, 720898, 917504, 2, 786434, 851968, 0, 851970, 851968, 2, 917506, 917504, 2, 983042, 393216, 3, 65539, 393216, 0, 131075, 851968, 0, 196611, 720896, 2, 262147, 917504, 1, 327683, 720896, 1, 393219, 786432, 2, 458755, 851968, 0, 524291, 917504, 2, 589827, 851968, 2, 655363, 720896, 0, 720899, 917504, 0, 786435, 851968, 1, 851971, 917504, 1, 917507, 720896, 2, 983043, 393216, 3, 65540, 393216, 0, 131076, 786432, 2, 196612, 917504, 0, 262148, 720896, 1, 327684, 917504, 2, 393220, 786432, 1, 458756, 851968, 2, 524292, 786432, 0, 589828, 851968, 0, 655364, 851968, 2, 720900, 786432, 0, 786436, 720896, 0, 851972, 851968, 1, 917508, 917504, 1, 983044, 393216, 3, 65541, 393216, 0, 131077, 720896, 0, 196613, 917504, 2, 262149, 786432, 1, 327685, 786432, 0, 393221, 851968, 2, 458757, 786432, 0, 524293, 786432, 2, 589829, 786432, 1, 655365, 786432, 1, 720901, 720896, 0, 786437, 917504, 0, 851973, 851968, 1, 917509, 786432, 2, 983045, 393216, 3, 65542, 393216, 0, 131078, 786432, 1, 196614, 786432, 2, 262150, 720896, 0, 327686, 851968, 1, 393222, 851968, 0, 458758, 851968, 0, 524294, 720896, 1, 589830, 786432, 1, 655366, 851968, 0, 720902, 720896, 2, 786438, 786432, 0, 851974, 786432, 2, 917510, 720896, 1, 983046, 393216, 3, 65543, 393216, 0, 131079, 720896, 0, 196615, 851968, 1, 262151, 851968, 1, 327687, 786432, 0, 393223, 917504, 2, 458759, 786432, 1, 524295, 917504, 2, 589831, 720896, 0, 655367, 851968, 0, 720903, 720896, 0, 786439, 917504, 1, 851975, 917504, 1, 917511, 720896, 0, 983047, 393216, 3, 65544, 393216, 0, 131080, 720896, 2, 196616, 851968, 1, 262152, 786432, 1, 327688, 786432, 0, 393224, 851968, 2, 458760, 917504, 1, 524296, 917504, 1, 589832, 917504, 1, 655368, 720896, 2, 720904, 917504, 0, 786440, 720896, 1, 851976, 786432, 0, 917512, 786432, 0, 983048, 393216, 3, 65545, 393216, 0, 131081, 786432, 1, 196617, 786432, 0, 262153, 720896, 2, 327689, 851968, 1, 393225, 720896, 1, 458761, 786432, 1, 524297, 917504, 0, 589833, 851968, 1, 655369, 851968, 1, 720905, 917504, 2, 786441, 917504, 2, 851977, 786432, 0, 917513, 720896, 1, 983049, 393216, 3, 65546, 393216, 0, 131082, 851968, 1, 196618, 917504, 1, 262154, 786432, 0, 327690, 786432, 0, 393226, 917504, 1, 458762, 786432, 0, 524298, 786432, 1, 589834, 786432, 0, 655370, 917504, 1, 720906, 720896, 2, 786442, 851968, 0, 851978, 851968, 0, 917514, 917504, 0, 983050, 393216, 3, 65547, 393216, 0, 131083, 786432, 2, 196619, 917504, 2, 262155, 851968, 1, 327691, 851968, 0, 393227, 720896, 1, 458763, 786432, 2, 524299, 851968, 1, 589835, 917504, 0, 655371, 917504, 2, 720907, 917504, 2, 786443, 786432, 2, 851979, 786432, 1, 917515, 720896, 2, 983051, 393216, 3, 65548, 393216, 0, 131084, 786432, 0, 196620, 851968, 0, 262156, 851968, 2, 327692, 786432, 0, 393228, 720896, 2, 458764, 786432, 1, 524300, 851968, 0, 589836, 917504, 2, 655372, 917504, 2, 720908, 917504, 2, 786444, 917504, 2, 851980, 720896, 1, 917516, 917504, 2, 983052, 393216, 3, 65549, 393216, 0, 131085, 720896, 1, 196621, 720896, 0, 262157, 851968, 0, 327693, 917504, 2, 393229, 786432, 1, 458765, 720896, 2, 524301, 786432, 2, 589837, 917504, 1, 655373, 917504, 0, 720909, 720896, 1, 786445, 786432, 2, 851981, 720896, 0, 917517, 917504, 1, 983053, 393216, 3, 65550, 393216, 0, 131086, 917504, 0, 196622, 917504, 2, 262158, 917504, 2, 327694, 917504, 2, 393230, 720896, 0, 458766, 851968, 2, 524302, 786432, 2, 589838, 720896, 2, 655374, 851968, 1, 720910, 786432, 0, 786446, 917504, 0, 851982, 851968, 0, 917518, 917504, 2, 983054, 393216, 3, 65551, 393216, 0, 131087, 720896, 0, 196623, 786432, 1, 262159, 851968, 1, 327695, 786432, 0, 393231, 786432, 0, 458767, 720896, 2, 524303, 851968, 2, 589839, 851968, 0, 655375, 720896, 2, 720911, 720896, 0, 786447, 786432, 0, 851983, 720896, 1, 917519, 786432, 1, 983055, 393216, 3, 65552, 393216, 0, 131088, 786432, 2, 196624, 851968, 1, 262160, 720896, 2, 327696, 786432, 0, 393232, 917504, 1, 458768, 851968, 0, 524304, 720896, 2, 589840, 851968, 0, 655376, 720896, 0, 720912, 786432, 1, 786448, 720896, 2, 851984, 851968, 1, 917520, 851968, 2, 983056, 393216, 3, 65553, 393216, 0, 131089, 917504, 0, 196625, 851968, 1, 262161, 917504, 0, 327697, 786432, 0, 393233, 720896, 1, 458769, 786432, 2, 524305, 720896, 0, 589841, 720896, 0, 655377, 917504, 0, 720913, 786432, 0, 786449, 917504, 1, 851985, 851968, 0, 917521, 851968, 2, 983057, 393216, 3, 65554, 393216, 0, 131090, 720896, 0, 196626, 720896, 1, 262162, 917504, 2, 327698, 720896, 2, 393234, 851968, 2, 458770, 851968, 2, 524306, 786432, 1, 589842, 720896, 1, 655378, 851968, 1, 720914, 851968, 1, 786450, 917504, 0, 851986, 786432, 0, 917522, 917504, 0, 983058, 393216, 3, 65555, 393216, 0, 131091, 851968, 2, 196627, 917504, 0, 262163, 720896, 2, 327699, 786432, 1, 393235, 851968, 0, 458771, 917504, 1, 524307, 851968, 2, 589843, 917504, 1, 655379, 720896, 1, 720915, 720896, 0, 786451, 851968, 1, 851987, 851968, 2, 917523, 851968, 2, 983059, 393216, 3, 65556, 393216, 0, 131092, 720896, 0, 196628, 851968, 1, 262164, 786432, 1, 327700, 786432, 2, 393236, 720896, 1, 458772, 720896, 1, 524308, 720896, 1, 589844, 720896, 2, 655380, 917504, 0, 720916, 917504, 2, 786452, 917504, 2, 851988, 720896, 1, 917524, 720896, 0, 983060, 393216, 3, 65557, 393216, 0, 131093, 917504, 1, 196629, 917504, 2, 262165, 786432, 1, 327701, 720896, 2, 393237, 720896, 1, 458773, 786432, 1, 524309, 786432, 0, 589845, 720896, 0, 655381, 720896, 1, 720917, 851968, 0, 786453, 851968, 2, 851989, 851968, 0, 917525, 917504, 2, 983061, 393216, 3, 65558, 393216, 0, 131094, 786432, 0, 196630, 720896, 2, 262166, 851968, 2, 327702, 786432, 0, 393238, 786432, 2, 458774, 917504, 1, 524310, 917504, 1, 589846, 851968, 1, 655382, 917504, 0, 720918, 917504, 1, 786454, 917504, 1, 851990, 786432, 2, 917526, 851968, 2, 983062, 393216, 3, 65559, 393216, 0, 131095, 786432, 2, 196631, 851968, 1, 262167, 917504, 1, 327703, 851968, 2, 393239, 720896, 0, 458775, 851968, 2, 524311, 720896, 1, 589847, 786432, 0, 655383, 786432, 0, 720919, 851968, 0, 786455, 720896, 1, 851991, 917504, 2, 917527, 786432, 0, 983063, 393216, 3, 65560, 393216, 0, 131096, 917504, 2, 196632, 786432, 0, 262168, 917504, 0, 327704, 851968, 0, 393240, 851968, 1, 458776, 917504, 1, 524312, 720896, 2, 589848, 786432, 2, 655384, 917504, 2, 720920, 851968, 1, 786456, 851968, 0, 851992, 720896, 1, 917528, 720896, 2, 983064, 393216, 3, 65561, 393216, 0, 131097, 917504, 2, 196633, 720896, 1, 262169, 851968, 1, 327705, 720896, 2, 393241, 917504, 0, 458777, 917504, 2, 524313, 786432, 1, 589849, 786432, 1, 655385, 917504, 1, 720921, 720896, 0, 786457, 720896, 1, 851993, 720896, 0, 917529, 720896, 2, 983065, 393216, 3, 65562, 393216, 0, 131098, 786432, 1, 196634, 720896, 0, 262170, 720896, 2, 327706, 917504, 2, 393242, 917504, 0, 458778, 851968, 2, 524314, 917504, 2, 589850, 720896, 0, 655386, 851968, 1, 720922, 786432, 1, 786458, 917504, 1, 851994, 851968, 0, 917530, 851968, 0, 983066, 393216, 3, 65563, 393216, 0, 131099, 917504, 0, 196635, 917504, 0, 262171, 917504, 1, 327707, 917504, 0, 393243, 851968, 0, 458779, 786432, 1, 524315, 786432, 1, 589851, 851968, 2, 655387, 720896, 0, 720923, 851968, 1, 786459, 851968, 2, 851995, 917504, 1, 917531, 917504, 2, 983067, 393216, 3, 65564, 393216, 1, 131100, 458752, 2, 196636, 458752, 2, 262172, 458752, 2, 327708, 458752, 2, 393244, 458752, 2, 458780, 458752, 2, 524316, 458752, 2, 589852, 458752, 2, 655388, 458752, 2, 720924, 458752, 2, 786460, 458752, 2, 851996, 458752, 2, 917532, 458752, 2, 983068, 393216, 2)
+layer_4/tile_data = PackedInt32Array(0, 524288, 0, 65536, 524288, 1, 131072, 524288, 1, 196608, 524288, 1, 262144, 524288, 1, 327680, 524288, 1, 393216, 524288, 1, 458752, 524288, 1, 524288, 524288, 1, 589824, 524288, 1, 655360, 524288, 1, 720896, 524288, 1, 786432, 524288, 1, 851968, 524288, 1, 917504, 524288, 1, 983040, 524288, 1, 1048576, 524288, 2, 1, 589824, 0, 65537, 0, 3, 131073, 0, 3, 196609, 0, 3, 262145, 0, 3, 327681, 0, 3, 393217, 0, 3, 458753, 0, 3, 524289, 0, 3, 589825, 0, 3, 655361, 0, 3, 720897, 0, 3, 786433, 0, 3, 851969, 0, 3, 917505, 0, 3, 983041, 0, 3, 1048577, 589824, 2, 2, 589824, 0, 65538, 0, 3, 131074, 0, 3, 196610, 0, 3, 262146, 0, 3, 327682, 0, 3, 393218, 0, 3, 458754, 0, 3, 524290, 0, 3, 589826, 0, 3, 655362, 0, 3, 720898, 0, 3, 786434, 0, 3, 851970, 0, 3, 917506, 0, 3, 983042, 0, 3, 1048578, 589824, 2, 3, 589824, 0, 65539, 0, 3, 131075, 0, 3, 196611, 0, 3, 262147, 0, 3, 327683, 0, 3, 393219, 0, 3, 458755, 0, 3, 524291, 0, 3, 589827, 0, 3, 655363, 0, 3, 720899, 0, 3, 786435, 0, 3, 851971, 0, 3, 917507, 0, 3, 983043, 0, 3, 1048579, 589824, 2, 4, 589824, 0, 65540, 0, 3, 131076, 0, 3, 196612, 0, 3, 262148, 0, 3, 327684, 0, 3, 393220, 0, 3, 458756, 0, 3, 524292, 0, 3, 589828, 0, 3, 655364, 0, 3, 720900, 0, 3, 786436, 0, 3, 851972, 0, 3, 917508, 0, 3, 983044, 0, 3, 1048580, 589824, 2, 5, 589824, 0, 65541, 0, 3, 131077, 0, 3, 196613, 0, 3, 262149, 0, 3, 327685, 0, 3, 393221, 0, 3, 458757, 0, 3, 524293, 0, 3, 589829, 0, 3, 655365, 0, 3, 720901, 0, 3, 786437, 0, 3, 851973, 0, 3, 917509, 0, 3, 983045, 0, 3, 1048581, 589824, 2, 6, 589824, 0, 65542, 0, 3, 131078, 0, 3, 196614, 0, 3, 262150, 0, 3, 327686, 0, 3, 393222, 0, 3, 458758, 0, 3, 524294, 0, 3, 589830, 0, 3, 655366, 0, 3, 720902, 0, 3, 786438, 0, 3, 851974, 0, 3, 917510, 0, 3, 983046, 0, 3, 1048582, 589824, 2, 7, 589824, 0, 65543, 0, 3, 131079, 0, 3, 196615, 0, 3, 262151, 0, 3, 327687, 0, 3, 393223, 0, 3, 458759, 0, 3, 524295, 0, 3, 589831, 0, 3, 655367, 0, 3, 720903, 0, 3, 786439, 0, 3, 851975, 0, 3, 917511, 0, 3, 983047, 0, 3, 1048583, 589824, 2, 8, 589824, 0, 65544, 0, 3, 131080, 0, 3, 196616, 0, 3, 262152, 0, 3, 327688, 0, 3, 393224, 0, 3, 458760, 0, 3, 524296, 0, 3, 589832, 0, 3, 655368, 0, 3, 720904, 0, 3, 786440, 0, 3, 851976, 0, 3, 917512, 0, 3, 983048, 0, 3, 1048584, 589824, 2, 9, 589824, 0, 65545, 0, 3, 131081, 0, 3, 196617, 0, 3, 262153, 0, 3, 327689, 0, 3, 393225, 0, 3, 458761, 0, 3, 524297, 0, 3, 589833, 0, 3, 655369, 0, 3, 720905, 0, 3, 786441, 0, 3, 851977, 0, 3, 917513, 0, 3, 983049, 0, 3, 1048585, 589824, 2, 10, 589824, 0, 65546, 0, 3, 131082, 0, 3, 196618, 0, 3, 262154, 0, 3, 327690, 0, 3, 393226, 0, 3, 458762, 0, 3, 524298, 0, 3, 589834, 0, 3, 655370, 0, 3, 720906, 0, 3, 786442, 0, 3, 851978, 0, 3, 917514, 0, 3, 983050, 0, 3, 1048586, 589824, 2, 11, 589824, 0, 65547, 0, 3, 131083, 0, 3, 196619, 0, 3, 262155, 0, 3, 327691, 0, 3, 393227, 0, 3, 458763, 0, 3, 524299, 0, 3, 589835, 0, 3, 655371, 0, 3, 720907, 0, 3, 786443, 0, 3, 851979, 0, 3, 917515, 0, 3, 983051, 0, 3, 1048587, 589824, 2, 12, 589824, 0, 65548, 0, 3, 131084, 0, 3, 196620, 0, 3, 262156, 0, 3, 327692, 0, 3, 393228, 0, 3, 458764, 0, 3, 524300, 0, 3, 589836, 0, 3, 655372, 0, 3, 720908, 0, 3, 786444, 0, 3, 851980, 0, 3, 917516, 0, 3, 983052, 0, 3, 1048588, 589824, 2, 13, 589824, 0, 65549, 0, 3, 131085, 0, 3, 196621, 0, 3, 262157, 0, 3, 327693, 0, 3, 393229, 0, 3, 458765, 0, 3, 524301, 0, 3, 589837, 0, 3, 655373, 0, 3, 720909, 0, 3, 786445, 0, 3, 851981, 0, 3, 917517, 0, 3, 983053, 0, 3, 1048589, 589824, 2, 14, 589824, 0, 65550, 0, 3, 131086, 0, 3, 196622, 0, 3, 262158, 0, 3, 327694, 0, 3, 393230, 0, 3, 458766, 0, 3, 524302, 0, 3, 589838, 0, 3, 655374, 0, 3, 720910, 0, 3, 786446, 0, 3, 851982, 0, 3, 917518, 0, 3, 983054, 0, 3, 1048590, 589824, 2, 15, 589824, 0, 65551, 0, 3, 131087, 0, 3, 196623, 0, 3, 262159, 0, 3, 327695, 0, 3, 393231, 0, 3, 458767, 0, 3, 524303, 0, 3, 589839, 0, 3, 655375, 0, 3, 720911, 0, 3, 786447, 0, 3, 851983, 0, 3, 917519, 0, 3, 983055, 0, 3, 1048591, 589824, 2, 16, 589824, 0, 65552, 0, 3, 131088, 0, 3, 196624, 0, 3, 262160, 0, 3, 327696, 0, 3, 393232, 0, 3, 458768, 0, 3, 524304, 0, 3, 589840, 0, 3, 655376, 0, 3, 720912, 0, 3, 786448, 0, 3, 851984, 0, 3, 917520, 0, 3, 983056, 0, 3, 1048592, 589824, 2, 17, 589824, 0, 65553, 0, 3, 131089, 0, 3, 196625, 0, 3, 262161, 0, 3, 327697, 0, 3, 393233, 0, 3, 458769, 0, 3, 524305, 0, 3, 589841, 0, 3, 655377, 0, 3, 720913, 0, 3, 786449, 0, 3, 851985, 0, 3, 917521, 0, 3, 983057, 0, 3, 1048593, 589824, 2, 18, 589824, 0, 65554, 0, 3, 131090, 0, 3, 196626, 0, 3, 262162, 0, 3, 327698, 0, 3, 393234, 0, 3, 458770, 0, 3, 524306, 0, 3, 589842, 0, 3, 655378, 0, 3, 720914, 0, 3, 786450, 0, 3, 851986, 0, 3, 917522, 0, 3, 983058, 0, 3, 1048594, 589824, 2, 19, 589824, 0, 65555, 0, 3, 131091, 0, 3, 196627, 0, 3, 262163, 0, 3, 327699, 0, 3, 393235, 0, 3, 458771, 0, 3, 524307, 0, 3, 589843, 0, 3, 655379, 0, 3, 720915, 0, 3, 786451, 0, 3, 851987, 0, 3, 917523, 0, 3, 983059, 0, 3, 1048595, 589824, 2, 20, 589824, 0, 65556, 0, 3, 131092, 0, 3, 196628, 0, 3, 262164, 0, 3, 327700, 0, 3, 393236, 0, 3, 458772, 0, 3, 524308, 0, 3, 589844, 0, 3, 655380, 0, 3, 720916, 0, 3, 786452, 0, 3, 851988, 0, 3, 917524, 0, 3, 983060, 0, 3, 1048596, 589824, 2, 21, 589824, 0, 65557, 0, 3, 131093, 0, 3, 196629, 0, 3, 262165, 0, 3, 327701, 0, 3, 393237, 0, 3, 458773, 0, 3, 524309, 0, 3, 589845, 0, 3, 655381, 0, 3, 720917, 0, 3, 786453, 0, 3, 851989, 0, 3, 917525, 0, 3, 983061, 0, 3, 1048597, 589824, 2, 22, 589824, 0, 65558, 0, 3, 131094, 0, 3, 196630, 0, 3, 262166, 0, 3, 327702, 0, 3, 393238, 0, 3, 458774, 0, 3, 524310, 0, 3, 589846, 0, 3, 655382, 0, 3, 720918, 0, 3, 786454, 0, 3, 851990, 0, 3, 917526, 0, 3, 983062, 0, 3, 1048598, 589824, 2, 23, 589824, 0, 65559, 0, 3, 131095, 0, 3, 196631, 0, 3, 262167, 0, 3, 327703, 0, 3, 393239, 0, 3, 458775, 0, 3, 524311, 0, 3, 589847, 0, 3, 655383, 0, 3, 720919, 0, 3, 786455, 0, 3, 851991, 0, 3, 917527, 0, 3, 983063, 0, 3, 1048599, 589824, 2, 24, 589824, 0, 65560, 0, 3, 131096, 0, 3, 196632, 0, 3, 262168, 0, 3, 327704, 0, 3, 393240, 0, 3, 458776, 0, 3, 524312, 0, 3, 589848, 0, 3, 655384, 0, 3, 720920, 0, 3, 786456, 0, 3, 851992, 0, 3, 917528, 0, 3, 983064, 0, 3, 1048600, 589824, 2, 25, 589824, 0, 65561, 0, 3, 131097, 0, 3, 196633, 0, 3, 262169, 0, 3, 327705, 0, 3, 393241, 0, 3, 458777, 0, 3, 524313, 0, 3, 589849, 0, 3, 655385, 0, 3, 720921, 0, 3, 786457, 0, 3, 851993, 0, 3, 917529, 0, 3, 983065, 0, 3, 1048601, 589824, 2, 26, 589824, 0, 65562, 0, 3, 131098, 0, 3, 196634, 0, 3, 262170, 0, 3, 327706, 0, 3, 393242, 0, 3, 458778, 0, 3, 524314, 0, 3, 589850, 0, 3, 655386, 0, 3, 720922, 0, 3, 786458, 0, 3, 851994, 0, 3, 917530, 0, 3, 983066, 0, 3, 1048602, 589824, 2, 27, 589824, 0, 65563, 0, 3, 131099, 0, 3, 196635, 0, 3, 262171, 0, 3, 327707, 0, 3, 393243, 0, 3, 458779, 0, 3, 524315, 0, 3, 589851, 0, 3, 655387, 0, 3, 720923, 0, 3, 786459, 0, 3, 851995, 0, 3, 917531, 0, 3, 983067, 0, 3, 1048603, 589824, 2, 28, 589824, 0, 65564, 0, 3, 131100, 0, 3, 196636, 0, 3, 262172, 0, 3, 327708, 0, 3, 393244, 0, 3, 458780, 0, 3, 524316, 0, 3, 589852, 0, 3, 655388, 0, 3, 720924, 0, 3, 786460, 0, 3, 851996, 0, 3, 917532, 0, 3, 983068, 0, 3, 1048604, 589824, 2, 29, 655360, 0, 65565, 655360, 1, 131101, 655360, 1, 196637, 655360, 1, 262173, 655360, 1, 327709, 655360, 1, 393245, 655360, 1, 458781, 655360, 1, 524317, 655360, 1, 589853, 655360, 1, 655389, 655360, 1, 720925, 655360, 1, 786461, 655360, 1, 851997, 655360, 1, 917533, 655360, 1, 983069, 655360, 1, 1048605, 655360, 2)
+
+[node name="Camera2D" type="Camera2D" parent="New_tilemap"]
+anchor_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_t2gth")
+theme_override_constants/margin_left = 42
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 42
+theme_override_constants/margin_bottom = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Icon_Class" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+size_flags_stretch_ratio = 0.0
+
+[node name="Panel" type="PanelContainer" parent="MarginContainer/VBoxContainer/Icon_Class"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"Panel_02"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Icon_Class/Panel"]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Icon_Class/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Class_1" type="Button" parent="MarginContainer/VBoxContainer/Icon_Class/Panel/VBoxContainer/HBoxContainer2" groups=["button"]]
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+theme_type_variation = &"Button_Class_Select"
+
+[node name="Icon_Player" type="Sprite2D" parent="MarginContainer/VBoxContainer/Icon_Class/Panel/VBoxContainer/HBoxContainer2/Class_1"]
+position = Vector2(16, 7)
+texture = ExtResource("3_joy8k")
+hframes = 6
+vframes = 10
+frame = 6
+
+[node name="Class_2" type="Button" parent="MarginContainer/VBoxContainer/Icon_Class/Panel/VBoxContainer/HBoxContainer2" groups=["button"]]
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+theme_type_variation = &"Button_Class_Select"
+
+[node name="Icon_Player" type="Sprite2D" parent="MarginContainer/VBoxContainer/Icon_Class/Panel/VBoxContainer/HBoxContainer2/Class_2"]
+position = Vector2(17, 7)
+texture = ExtResource("4_ksyr4")
+hframes = 6
+vframes = 10
+frame = 6
+
+[node name="Class_3" type="Button" parent="MarginContainer/VBoxContainer/Icon_Class/Panel/VBoxContainer/HBoxContainer2" groups=["button"]]
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+theme_type_variation = &"Button_Class_Select"
+
+[node name="Icon_Player" type="Sprite2D" parent="MarginContainer/VBoxContainer/Icon_Class/Panel/VBoxContainer/HBoxContainer2/Class_3"]
+position = Vector2(18, 8)
+texture = ExtResource("5_rhv0r")
+hframes = 6
+vframes = 10
+frame = 6
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Icon_Class/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Mage" type="Label" parent="MarginContainer/VBoxContainer/Icon_Class/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 6
+text = "Mage"
+horizontal_alignment = 1
+
+[node name="Rogue" type="Label" parent="MarginContainer/VBoxContainer/Icon_Class/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 6
+text = "Rogue
+"
+horizontal_alignment = 1
+
+[node name="Bard" type="Label" parent="MarginContainer/VBoxContainer/Icon_Class/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 6
+text = "Bard
+"
+horizontal_alignment = 1
+
+[node name="Details" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"Panel_02"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Details"]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Details/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Back" type="Button" parent="MarginContainer/VBoxContainer/Details/VBoxContainer/HBoxContainer2" groups=["button"]]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 4
+focus_mode = 0
+theme_override_font_sizes/font_size = 8
+action_mode = 0
+text = "Back"
+
+[node name="Select_Class" type="Label" parent="MarginContainer/VBoxContainer/Details/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 14
+text = "Select Class"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Start" type="Button" parent="MarginContainer/VBoxContainer/Details/VBoxContainer/HBoxContainer2" groups=["button"]]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+focus_mode = 0
+theme_override_font_sizes/font_size = 8
+action_mode = 0
+text = "Start"
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Details/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_right = 14
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Details/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/Details/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"Panel_02"
+
+[node name="StatsDetails" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Details/VBoxContainer/MarginContainer/HBoxContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="Stats" type="Label" parent="MarginContainer/VBoxContainer/Details/VBoxContainer/MarginContainer/HBoxContainer/PanelContainer/StatsDetails"]
+layout_mode = 2
+theme = ExtResource("2_t2gth")
+theme_type_variation = &"Label_minor"
+theme_override_font_sizes/font_size = 10
+text = "Stats:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HP" type="Label" parent="MarginContainer/VBoxContainer/Details/VBoxContainer/MarginContainer/HBoxContainer/PanelContainer/StatsDetails"]
+layout_mode = 2
+theme = ExtResource("2_t2gth")
+theme_type_variation = &"Label_minor"
+text = "HP: 100
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Damage" type="Label" parent="MarginContainer/VBoxContainer/Details/VBoxContainer/MarginContainer/HBoxContainer/PanelContainer/StatsDetails"]
+layout_mode = 2
+theme = ExtResource("2_t2gth")
+theme_type_variation = &"Label_minor"
+text = "Damage: 20"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Speed" type="Label" parent="MarginContainer/VBoxContainer/Details/VBoxContainer/MarginContainer/HBoxContainer/PanelContainer/StatsDetails"]
+layout_mode = 2
+theme = ExtResource("2_t2gth")
+theme_type_variation = &"Label_minor"
+text = "Speed: 70"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Weapon" type="Label" parent="MarginContainer/VBoxContainer/Details/VBoxContainer/MarginContainer/HBoxContainer/PanelContainer/StatsDetails"]
+layout_mode = 2
+theme = ExtResource("2_t2gth")
+theme_type_variation = &"Label_minor"
+theme_override_font_sizes/font_size = 7
+text = "Weapon: "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Weapon_text" type="Label" parent="MarginContainer/VBoxContainer/Details/VBoxContainer/MarginContainer/HBoxContainer/PanelContainer/StatsDetails"]
+layout_mode = 2
+theme = ExtResource("2_t2gth")
+theme_type_variation = &"Label_minor"
+theme_override_font_sizes/font_size = 7
+text = "Staff"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Details/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Middle" type="Control" parent="MarginContainer/VBoxContainer/Details/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.0
+
+[node name="Face_Shadow" type="Sprite2D" parent="MarginContainer/VBoxContainer/Details/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/Middle"]
+position = Vector2(-35.5, 32)
+texture = ExtResource("6_kq3dg")
+offset = Vector2(-0.5, -17)
+hframes = 6
+vframes = 10
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MarginContainer/VBoxContainer/Details/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/Middle/Face_Shadow"]
+libraries = {
+"": SubResource("AnimationLibrary_6aex6")
+}
+autoplay = "Idle"
+
+[node name="Face_Body" type="Sprite2D" parent="MarginContainer/VBoxContainer/Details/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/Middle"]
+position = Vector2(-35.5, 32)
+texture = ExtResource("7_nv837")
+offset = Vector2(-0.5, -17)
+hframes = 6
+vframes = 10
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MarginContainer/VBoxContainer/Details/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/Middle/Face_Body"]
+libraries = {
+"": SubResource("AnimationLibrary_6aex6")
+}
+autoplay = "Idle"
+
+[node name="Face_Head" type="Sprite2D" parent="MarginContainer/VBoxContainer/Details/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/Middle"]
+position = Vector2(-35.5, 32)
+texture = ExtResource("8_n6l1d")
+offset = Vector2(-0.5, -17)
+hframes = 6
+vframes = 10
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MarginContainer/VBoxContainer/Details/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/Middle/Face_Head"]
+libraries = {
+"": SubResource("AnimationLibrary_6aex6")
+}
+autoplay = "Idle"
+
+[node name="Side_Shadow" type="Sprite2D" parent="MarginContainer/VBoxContainer/Details/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/Middle"]
+position = Vector2(0.5, 32)
+texture = ExtResource("6_kq3dg")
+offset = Vector2(-0.5, -17)
+hframes = 6
+vframes = 10
+frame = 6
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MarginContainer/VBoxContainer/Details/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/Middle/Side_Shadow"]
+libraries = {
+"": SubResource("AnimationLibrary_jqpsf")
+}
+autoplay = "Side"
+
+[node name="Side_Body" type="Sprite2D" parent="MarginContainer/VBoxContainer/Details/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/Middle"]
+position = Vector2(0.5, 32)
+texture = ExtResource("7_nv837")
+offset = Vector2(-0.5, -17)
+hframes = 6
+vframes = 10
+frame = 6
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MarginContainer/VBoxContainer/Details/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/Middle/Side_Body"]
+libraries = {
+"": SubResource("AnimationLibrary_jqpsf")
+}
+autoplay = "Side"
+
+[node name="Side_Head" type="Sprite2D" parent="MarginContainer/VBoxContainer/Details/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/Middle"]
+position = Vector2(0.5, 32)
+texture = ExtResource("8_n6l1d")
+offset = Vector2(-0.5, -17)
+hframes = 6
+vframes = 10
+frame = 6
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MarginContainer/VBoxContainer/Details/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/Middle/Side_Head"]
+libraries = {
+"": SubResource("AnimationLibrary_jqpsf")
+}
+autoplay = "Side"
+
+[node name="Back_Shadow" type="Sprite2D" parent="MarginContainer/VBoxContainer/Details/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/Middle"]
+position = Vector2(36.5, 32)
+texture = ExtResource("6_kq3dg")
+offset = Vector2(-0.5, -17)
+hframes = 6
+vframes = 10
+frame = 12
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MarginContainer/VBoxContainer/Details/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/Middle/Back_Shadow"]
+libraries = {
+"": SubResource("AnimationLibrary_276i1")
+}
+autoplay = "Back"
+
+[node name="Back_Body" type="Sprite2D" parent="MarginContainer/VBoxContainer/Details/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/Middle"]
+position = Vector2(36.5, 32)
+texture = ExtResource("7_nv837")
+offset = Vector2(-0.5, -17)
+hframes = 6
+vframes = 10
+frame = 12
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MarginContainer/VBoxContainer/Details/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/Middle/Back_Body"]
+libraries = {
+"": SubResource("AnimationLibrary_276i1")
+}
+autoplay = "Back"
+
+[node name="Back_Head" type="Sprite2D" parent="MarginContainer/VBoxContainer/Details/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/Middle"]
+position = Vector2(36.5, 32)
+texture = ExtResource("8_n6l1d")
+offset = Vector2(-0.5, -17)
+hframes = 6
+vframes = 10
+frame = 12
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MarginContainer/VBoxContainer/Details/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/Middle/Back_Head"]
+libraries = {
+"": SubResource("AnimationLibrary_276i1")
+}
+autoplay = "Back"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Details/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Details/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_bottom = 10
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/Details/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_type_variation = &"Panel_02"
+
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer/Details/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/MarginContainer/PanelContainer"]
+layout_mode = 2
+theme_type_variation = &"Label_minor"
+text = "God Of Ash"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PanelContainer2" type="PanelContainer" parent="MarginContainer/VBoxContainer/Details/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"Panel_02"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Details/VBoxContainer/MarginContainer/HBoxContainer/PanelContainer2"]
+layout_mode = 2
+
+[node name="Change" type="Label" parent="MarginContainer/VBoxContainer/Details/VBoxContainer/MarginContainer/HBoxContainer/PanelContainer2/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"Label_minor"
+text = "Change:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Details/VBoxContainer/MarginContainer/HBoxContainer/PanelContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="Previous" type="Button" parent="MarginContainer/VBoxContainer/Details/VBoxContainer/MarginContainer/HBoxContainer/PanelContainer2/VBoxContainer/HBoxContainer" groups=["button"]]
+layout_mode = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 10
+action_mode = 0
+text = "<"
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Details/VBoxContainer/MarginContainer/HBoxContainer/PanelContainer2/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"Label_minor"
+text = "Body"
+
+[node name="Next" type="Button" parent="MarginContainer/VBoxContainer/Details/VBoxContainer/MarginContainer/HBoxContainer/PanelContainer2/VBoxContainer/HBoxContainer" groups=["button"]]
+layout_mode = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 10
+action_mode = 0
+text = ">"
+
+[node name="CurrentBody" type="Label" parent="MarginContainer/VBoxContainer/Details/VBoxContainer/MarginContainer/HBoxContainer/PanelContainer2/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"Label_minor"
+text = "Current Body:
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BodyColor" type="Label" parent="MarginContainer/VBoxContainer/Details/VBoxContainer/MarginContainer/HBoxContainer/PanelContainer2/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"Label_minor"
+text = "Gray"
+horizontal_alignment = 1
+vertical_alignment = 1

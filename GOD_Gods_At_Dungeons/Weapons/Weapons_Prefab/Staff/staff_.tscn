@@ -1,0 +1,244 @@
+[gd_scene load_steps=15 format=3 uid="uid://dfa3boyawrv0w"]
+
+[ext_resource type="PackedScene" uid="uid://cp4ds2pxuam2d" path="res://Weapons/Weapon_Scenes/weapon_template.tscn" id="1_5apaj"]
+[ext_resource type="Script" path="res://Weapons/Weapons_Prefab/Staff/staff_script.gd" id="2_gycbv"]
+[ext_resource type="PackedScene" uid="uid://duaegaivf607k" path="res://Weapons/Projectile_Prefabs/Staff/blast_in.tscn" id="3_g1y4x"]
+[ext_resource type="Texture2D" uid="uid://be1ygbe1wtr2t" path="res://Weapons/Sprites/Arm_player2.png" id="4_10ykr"]
+
+[sub_resource type="Animation" id="Animation_63bxm"]
+resource_name = "Down"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WeaponTexture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WeaponTexture:z_index")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Arm_1:z_index")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Arm_2:z_index")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+
+[sub_resource type="Animation" id="Animation_8fvws"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WeaponTexture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WeaponTexture:z_index")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Arm_1:z_index")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Arm_2:z_index")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+
+[sub_resource type="Animation" id="Animation_s7jc2"]
+resource_name = "Up"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WeaponTexture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WeaponTexture:z_index")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Arm_2:z_index")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Arm_1:z_index")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ju0n3"]
+_data = {
+"Down": SubResource("Animation_63bxm"),
+"RESET": SubResource("Animation_8fvws"),
+"Up": SubResource("Animation_s7jc2")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bb4fj"]
+animation = &"Up"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_itxct"]
+animation = &"Down"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dnynb"]
+animation = &"Up"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8u6dq"]
+animation = &"Up"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_sm4ur"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_bb4fj")
+blend_point_0/pos = Vector2(-1, 0)
+blend_point_1/node = SubResource("AnimationNodeAnimation_itxct")
+blend_point_1/pos = Vector2(0, -1)
+blend_point_2/node = SubResource("AnimationNodeAnimation_dnynb")
+blend_point_2/pos = Vector2(1, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_8u6dq")
+blend_point_3/pos = Vector2(0, 1)
+blend_mode = 1
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_tyqdw"]
+states/Idle/node = SubResource("AnimationNodeBlendSpace2D_sm4ur")
+states/Idle/position = Vector2(508, 100.667)
+
+[node name="Staff_" instance=ExtResource("1_5apaj")]
+script = ExtResource("2_gycbv")
+blast_scene = ExtResource("3_g1y4x")
+
+[node name="WeaponTexture" parent="." index="0"]
+z_index = 5
+position = Vector2(6, -7)
+rotation = -0.785398
+region_rect = Rect2(192, 416, 16, 16)
+
+[node name="Arm_1" parent="." index="1"]
+z_index = 4
+position = Vector2(5, -3)
+texture = ExtResource("4_10ykr")
+
+[node name="Arm_2" parent="." index="2"]
+z_index = 6
+position = Vector2(6, 1)
+texture = ExtResource("4_10ykr")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
+libraries = {
+"": SubResource("AnimationLibrary_ju0n3")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="4"]
+libraries = {
+"": SubResource("AnimationLibrary_ju0n3")
+}
+tree_root = SubResource("AnimationNodeStateMachine_tyqdw")
+anim_player = NodePath("../AnimationPlayer")
+parameters/Idle/blend_position = Vector2(0, 0)
+
+[node name="AttackTimer" type="Timer" parent="." index="5"]
+wait_time = 0.6
+one_shot = true
+
+[node name="GhostTimer" type="Timer" parent="." index="6"]
+wait_time = 0.1
+
+[node name="Marker2D" type="Marker2D" parent="." index="7"]
+position = Vector2(10, -12)
+rotation = -0.785398
+gizmo_extents = 8.0
+
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
+[connection signal="timeout" from="GhostTimer" to="." method="_on_ghost_timer_timeout"]

@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://ug3j0umwj3rl"]
+
+[ext_resource type="Texture2D" uid="uid://cub20c1ues60m" path="res://Cenas/Particles/Sprites/Particles-01.png" id="1_lgbmq"]
+
+[sub_resource type="Curve" id="Curve_fs53j"]
+_data = [Vector2(0, 0.0792452), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="Bow_Trail" type="CPUParticles2D"]
+show_behind_parent = true
+lifetime = 0.5
+texture = ExtResource("1_lgbmq")
+emission_shape = 1
+emission_sphere_radius = 8.0
+direction = Vector2(0, 0)
+spread = 90.0
+gravity = Vector2(0, 0)
+scale_amount_curve = SubResource("Curve_fs53j")
+color = Color(1, 1, 0, 1)

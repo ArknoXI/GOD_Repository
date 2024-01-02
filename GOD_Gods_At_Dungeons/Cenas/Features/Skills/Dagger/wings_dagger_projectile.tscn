@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://bpsuh2fr0bwdh"]
+
+[ext_resource type="Script" path="res://Cenas/Features/Skills/Dagger/wings_dagger_projectile.gd" id="1_67un8"]
+[ext_resource type="Texture2D" uid="uid://bn5hsdgapshub" path="res://Weapons/Sprites/RPG Weapons Dark Outline.png" id="1_kdecr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c37tx"]
+size = Vector2(12, 4)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sgqvr"]
+radius = 83.006
+
+[node name="Wings_dagger_projectile" type="Area2D"]
+collision_layer = 32
+collision_mask = 9
+script = ExtResource("1_67un8")
+Stat_damage = 5
+
+[node name="Texture" type="Sprite2D" parent="."]
+rotation = 0.785398
+texture = ExtResource("1_kdecr")
+offset = Vector2(6, -6)
+region_enabled = true
+region_rect = Rect2(32, 112, 16, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(4, 0)
+shape = SubResource("RectangleShape2D_c37tx")
+
+[node name="Vision_area" type="Area2D" parent="."]
+collision_mask = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Vision_area"]
+shape = SubResource("CircleShape2D_sgqvr")
+
+[connection signal="body_entered" from="." to="." method="_on_Enemy_touched"]
+[connection signal="body_entered" from="Vision_area" to="." method="_on_vision_area_body_entered"]

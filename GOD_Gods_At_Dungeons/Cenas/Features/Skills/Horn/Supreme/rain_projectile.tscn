@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://c22bsd117csqv"]
+
+[ext_resource type="Texture2D" uid="uid://dgtykf2x2myn4" path="res://Weapons/Projectile_Sprites/Retro Impact Effect Pack 3 C.png" id="1_4mnx5"]
+[ext_resource type="Script" path="res://Cenas/Features/Skills/Horn/Supreme/rain_projectile.gd" id="1_yc5a2"]
+[ext_resource type="PackedScene" uid="uid://tdki48kjfcx4" path="res://Cenas/Features/Skills/Horn/Supreme/supreme_rain_projectile.tscn" id="2_iln24"]
+[ext_resource type="PackedScene" uid="uid://d3gw1bmpbq38q" path="res://Cenas/Particles/Trail_particles/rain_bubble_trail.tscn" id="4_cj6sa"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nqd1e"]
+
+[node name="Rain_projectile" type="Node2D"]
+script = ExtResource("1_yc5a2")
+effect_prefab = ExtResource("2_iln24")
+
+[node name="Texture_shadow" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 0.560784)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_4mnx5")
+hframes = 6
+vframes = 24
+frame = 7
+
+[node name="Texture" type="Sprite2D" parent="."]
+z_index = 5
+position = Vector2(0, -288)
+texture = ExtResource("1_4mnx5")
+hframes = 6
+vframes = 24
+frame = 7
+
+[node name="Rain_bubble_trail" parent="Texture" instance=ExtResource("4_cj6sa")]
+
+[node name="Collision_area" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision_area"]
+shape = SubResource("CircleShape2D_nqd1e")
+disabled = true
+
+[connection signal="area_entered" from="Collision_area" to="." method="_on_collision_area_area_entered"]

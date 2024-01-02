@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://d2lw1duviosta"]
+
+[ext_resource type="Script" path="res://Weapons/Projectile_Prefabs/Projectile.gd" id="1_jwoss"]
+
+[node name="Projectile" type="Area2D"]
+script = ExtResource("1_jwoss")
+
+[node name="Texture" type="Sprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="Duration" type="Timer" parent="."]

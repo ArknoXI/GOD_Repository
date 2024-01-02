@@ -1,0 +1,87 @@
+[gd_scene load_steps=9 format=3 uid="uid://dup0gytokm47j"]
+
+[ext_resource type="Script" path="res://Enemys/enemy_template.gd" id="1_6366e"]
+[ext_resource type="PackedScene" uid="uid://dlsafe4wbgyy8" path="res://Cenas/Global_Feature/stats.tscn" id="2_2n5b1"]
+[ext_resource type="PackedScene" uid="uid://chq54hougvlwe" path="res://UI/Health_bar/Health_bar.tscn" id="3_er6ad"]
+[ext_resource type="Shader" path="res://Cenas/Shaders/Flash.gdshader" id="4_uinq4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hc4pc"]
+resource_local_to_scene = true
+shader = ExtResource("4_uinq4")
+shader_parameter/is_active = false
+
+[sub_resource type="Animation" id="Animation_pfkbm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Texture:material:shader_parameter/is_active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_sbjv1"]
+resource_name = "hit"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Texture:material:shader_parameter/is_active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bufng"]
+_data = {
+"RESET": SubResource("Animation_pfkbm"),
+"hit": SubResource("Animation_sbjv1")
+}
+
+[node name="Ranged_Enemy_Template" type="CharacterBody2D"]
+script = ExtResource("1_6366e")
+
+[node name="Stats" parent="." instance=ExtResource("2_2n5b1")]
+Health = 100
+Damage = 20
+speed = 50.0
+
+[node name="Health_bar" parent="." instance=ExtResource("3_er6ad")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="Texture" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_hc4pc")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Texture")
+
+[node name="AuxAnimation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_bufng")
+}
+
+[node name="Vision_area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Vision_area"]
+
+[node name="Collision_area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision_area"]
+
+[node name="Attack_area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attack_area"]
+
+[connection signal="body_entered" from="Vision_area" to="." method="_on_vision_area_body_entered"]
+[connection signal="area_entered" from="Collision_area" to="Stats" method="_on_collision_area_area_entered"]
+[connection signal="body_entered" from="Attack_area" to="." method="_on_attack_area_body_entered"]
