@@ -42,5 +42,6 @@ func HurtS():
 func _on_collision_area_area_entered(area):
 	if area is Bullet:
 		TakeDamage(area.Stat_Damage)
-	if get_parent() is Enemy:
+	if get_parent() is Enemy and get_parent().target == null:
+		get_parent().target = GameManager.player
 		get_parent().in_range = true

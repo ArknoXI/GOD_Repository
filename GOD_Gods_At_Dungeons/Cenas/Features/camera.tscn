@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dituub3f87h5e" path="res://Cenas/Particles/Trail_particles/dust_effect.tscn" id="3_tmc5f"]
 [ext_resource type="Shader" path="res://Cenas/Shaders/vignette.gdshader" id="4_4ei6y"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_2tifs"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qvwkf"]
 resource_local_to_scene = true
 shader = ExtResource("4_4ei6y")
 shader_parameter/vignette_intensity = 0.6
@@ -26,5 +26,5 @@ color = Color(0.698039, 0.133333, 0.133333, 1)
 color_ramp = null
 
 [node name="Vignette" parent="CanvasLayer" instance=ExtResource("2_n7hnn")]
-material = SubResource("ShaderMaterial_2tifs")
+material = SubResource("ShaderMaterial_qvwkf")
 mouse_filter = 2

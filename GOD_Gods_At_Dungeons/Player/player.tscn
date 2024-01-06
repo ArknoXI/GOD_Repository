@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://5ay4n228uwt0"]
+[gd_scene load_steps=41 format=3 uid="uid://5ay4n228uwt0"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_crcpi"]
 [ext_resource type="PackedScene" uid="uid://bqtx8r0h6fcwv" path="res://Cenas/Ghosts/ghost.tscn" id="2_5i5gr"]
@@ -8,8 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://ohsewwlv3q4i" path="res://Cenas/Features/dash.tscn" id="5_yi2e3"]
 [ext_resource type="Shader" path="res://Cenas/Shaders/Flash.gdshader" id="8_we2kp"]
 [ext_resource type="Texture2D" uid="uid://bd068pl3xcciq" path="res://Player/Sprites/Shadow/Shadow.png" id="9_33oo6"]
-[ext_resource type="Texture2D" uid="uid://b87dok6oqlpb1" path="res://Player/Sprites/Body_Colors/Style_01/Body_Gray.png" id="9_b8xu4"]
+[ext_resource type="Shader" path="res://Cenas/Shaders/color_swapper.gdshader" id="9_e2hrb"]
 [ext_resource type="PackedScene" uid="uid://b3sswwm8j3hxr" path="res://Cenas/Features/camera.tscn" id="9_fceji"]
+[ext_resource type="Texture2D" uid="uid://6jo27q20114t" path="res://Player/Sprites/Body_Colors/Style_01/Body_Green_alpha.png" id="10_x8t1o"]
 [ext_resource type="PackedScene" uid="uid://bf67orlf1hfry" path="res://Cenas/Particles/Trail_particles/trail.tscn" id="11_0v1yb"]
 [ext_resource type="Texture2D" uid="uid://bjrxcnlss08hx" path="res://Player/Sprites/GoL/Head/Head_GoL.png" id="11_av80k"]
 
@@ -18,6 +19,11 @@ size = Vector2(12, 4)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_h3w85"]
 shader = ExtResource("8_we2kp")
+shader_parameter/is_active = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yinuu"]
+shader = ExtResource("9_e2hrb")
+shader_parameter/color = Color(0.639216, 0, 0, 1)
 shader_parameter/is_active = false
 
 [sub_resource type="Animation" id="Animation_lx3mk"]
@@ -1062,6 +1068,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureBody:material:shader_parameter/is_active")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_sbjv1"]
 resource_name = "hit"
@@ -1073,6 +1091,18 @@ tracks/0/path = NodePath("TextureShadow:material:shader_parameter/is_active")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureBody:material:shader_parameter/is_active")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
@@ -1142,7 +1172,7 @@ states/walk/position = Vector2(481.333, 159.333)
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("trail", "Heal_bar", "_animation_tree")]
 collision_layer = 2
-collision_mask = 31
+collision_mask = 25
 script = ExtResource("1_crcpi")
 Ghosting = ExtResource("2_5i5gr")
 trail = NodePath("Trail")
@@ -1178,9 +1208,9 @@ vframes = 10
 
 [node name="TextureBody" type="Sprite2D" parent="."]
 z_index = 4
-material = SubResource("ShaderMaterial_h3w85")
+material = SubResource("ShaderMaterial_yinuu")
 position = Vector2(-0.5, -17)
-texture = ExtResource("9_b8xu4")
+texture = ExtResource("10_x8t1o")
 hframes = 6
 vframes = 10
 

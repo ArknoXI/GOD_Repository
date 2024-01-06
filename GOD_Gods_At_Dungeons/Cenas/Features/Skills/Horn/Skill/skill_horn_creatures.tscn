@@ -1,0 +1,56 @@
+[gd_scene load_steps=6 format=3 uid="uid://bht1y60iriecy"]
+
+[ext_resource type="Script" path="res://Cenas/Features/Skills/Horn/Skill/skill_horn_creatures.gd" id="1_5vfaa"]
+[ext_resource type="PackedScene" uid="uid://c23203rj0ud8m" path="res://Cenas/Features/Skills/skill_icon.tscn" id="1_mubet"]
+[ext_resource type="PackedScene" uid="uid://ywkwdrd6h58h" path="res://Cenas/Features/Skills/Horn/Skill/creature_horn_skill.tscn" id="2_plcfy"]
+[ext_resource type="Texture2D" uid="uid://bjbfnlgg75hrc" path="res://Cenas/Features/Skills/Horn/Icon/32.png" id="2_qxajc"]
+[ext_resource type="Texture2D" uid="uid://cas8xc6dqtooi" path="res://Cenas/Features/Skills/Horn/Icon/08.png" id="3_3jndb"]
+
+[node name="Skill_horn_creatures" type="Node2D" node_paths=PackedStringArray("cooldown")]
+script = ExtResource("1_5vfaa")
+creatures = ExtResource("2_plcfy")
+cooldown_time = 17
+cooldown = NodePath("Cooldown")
+
+[node name="Cooldown" type="Timer" parent="."]
+one_shot = true
+
+[node name="Skill_Icon" parent="." instance=ExtResource("1_mubet")]
+
+[node name="Supreme" parent="Skill_Icon/HBoxContainer" index="0"]
+modulate = Color(1, 1, 1, 0)
+
+[node name="TextureProgressBar" parent="Skill_Icon/HBoxContainer/Supreme" index="0"]
+texture_progress = ExtResource("2_qxajc")
+
+[node name="TextureProgressBar" parent="Skill_Icon/HBoxContainer/Skill" index="0"]
+texture_progress = ExtResource("3_3jndb")
+
+[node name="E" parent="Skill_Icon" index="1"]
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+
+[node name="Q" parent="Skill_Icon" index="2"]
+modulate = Color(1, 1, 1, 0)
+
+[node name="Creatures" type="Node2D" parent="."]
+
+[node name="Pos_1" type="Marker2D" parent="Creatures"]
+position = Vector2(0, 25)
+
+[node name="Pos_2" type="Marker2D" parent="Creatures"]
+position = Vector2(-25, 5)
+
+[node name="Pos_3" type="Marker2D" parent="Creatures"]
+position = Vector2(25, 5)
+
+[node name="Pos_4" type="Marker2D" parent="Creatures"]
+position = Vector2(0, -25)
+
+[node name="Pos_5" type="Marker2D" parent="Creatures"]
+position = Vector2(-25, -10)
+
+[node name="Pos_6" type="Marker2D" parent="Creatures"]
+position = Vector2(25, -10)
+
+[editable path="Skill_Icon"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dm2ch27savdr7"]
+[gd_scene load_steps=23 format=3 uid="uid://dm2ch27savdr7"]
 
 [ext_resource type="Script" path="res://UI/Menu_UI/Player_Select/class_select.gd" id="1_4btbq"]
 [ext_resource type="PackedScene" uid="uid://dr6fhr4h4umpd" path="res://Cenas/Global_Feature/new_tilemap.tscn" id="2_1gog0"]
@@ -7,8 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://bthjvdjfnjl41" path="res://Player/Sprites/GoB/Full_Body/Goddess_Of_Blades.png" id="4_ksyr4"]
 [ext_resource type="Texture2D" uid="uid://c4b3w53ymto0w" path="res://Player/Sprites/GoL/Full_Body/God_Of_The_Lagoon.png" id="5_rhv0r"]
 [ext_resource type="Texture2D" uid="uid://bd068pl3xcciq" path="res://Player/Sprites/Shadow/Shadow.png" id="6_kq3dg"]
-[ext_resource type="Texture2D" uid="uid://b87dok6oqlpb1" path="res://Player/Sprites/Body_Colors/Style_01/Body_Gray.png" id="7_nv837"]
 [ext_resource type="Texture2D" uid="uid://33cdoe3qmtay" path="res://Player/Sprites/GoA/Head/Head_GoA.png" id="8_n6l1d"]
+[ext_resource type="Shader" path="res://Cenas/Shaders/color_swapper.gdshader" id="8_ywsd2"]
+[ext_resource type="Texture2D" uid="uid://6jo27q20114t" path="res://Player/Sprites/Body_Colors/Style_01/Body_Green_alpha.png" id="9_x0gwi"]
 
 [sub_resource type="Animation" id="Animation_amse8"]
 resource_name = "Idle"
@@ -48,6 +49,11 @@ _data = {
 "RESET": SubResource("Animation_b13n3")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wo6pp"]
+shader = ExtResource("8_ywsd2")
+shader_parameter/color = null
+shader_parameter/is_active = false
+
 [sub_resource type="Animation" id="Animation_v0518"]
 length = 0.001
 tracks/0/type = "value"
@@ -85,6 +91,11 @@ _data = {
 "RESET": SubResource("Animation_v0518"),
 "Side": SubResource("Animation_dsywi")
 }
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pmrul"]
+shader = ExtResource("8_ywsd2")
+shader_parameter/color = null
+shader_parameter/is_active = false
 
 [sub_resource type="Animation" id="Animation_soafd"]
 resource_name = "Back"
@@ -124,7 +135,12 @@ _data = {
 "RESET": SubResource("Animation_1nn71")
 }
 
-[node name="Class_Select" type="Control" node_paths=PackedStringArray("Head_Face", "Head_Side", "Head_Back", "Body_Face", "Body_Side", "Body_Back", "TITLE", "HP", "DAMAGE", "SPEED", "WEAPON", "BODY_COLOR")]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n47ii"]
+shader = ExtResource("8_ywsd2")
+shader_parameter/color = null
+shader_parameter/is_active = false
+
+[node name="Class_Select" type="Control" node_paths=PackedStringArray("Head_Face", "Head_Side", "Head_Back", "body_face", "body_side", "body_back", "TITLE", "HP", "DAMAGE", "SPEED", "WEAPON", "BODY_COLOR")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -135,9 +151,9 @@ script = ExtResource("1_4btbq")
 Head_Face = NodePath("MarginContainer/VBoxContainer/Details/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/Middle/Face_Head")
 Head_Side = NodePath("MarginContainer/VBoxContainer/Details/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/Middle/Side_Head")
 Head_Back = NodePath("MarginContainer/VBoxContainer/Details/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/Middle/Back_Head")
-Body_Face = NodePath("MarginContainer/VBoxContainer/Details/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/Middle/Face_Body")
-Body_Side = NodePath("MarginContainer/VBoxContainer/Details/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/Middle/Side_Body")
-Body_Back = NodePath("MarginContainer/VBoxContainer/Details/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/Middle/Back_Body")
+body_face = NodePath("MarginContainer/VBoxContainer/Details/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/Middle/Face_Body")
+body_side = NodePath("MarginContainer/VBoxContainer/Details/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/Middle/Side_Body")
+body_back = NodePath("MarginContainer/VBoxContainer/Details/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/Middle/Back_Body")
 TITLE = NodePath("MarginContainer/VBoxContainer/Details/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/MarginContainer/PanelContainer/Title")
 HP = NodePath("MarginContainer/VBoxContainer/Details/VBoxContainer/MarginContainer/HBoxContainer/PanelContainer/StatsDetails/HP")
 DAMAGE = NodePath("MarginContainer/VBoxContainer/Details/VBoxContainer/MarginContainer/HBoxContainer/PanelContainer/StatsDetails/Damage")
@@ -326,7 +342,7 @@ vertical_alignment = 1
 layout_mode = 2
 theme = ExtResource("2_t2gth")
 theme_type_variation = &"Label_minor"
-text = "Damage: 20"
+text = "Damage: 35"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -380,8 +396,9 @@ libraries = {
 autoplay = "Idle"
 
 [node name="Face_Body" type="Sprite2D" parent="MarginContainer/VBoxContainer/Details/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/Middle"]
+material = SubResource("ShaderMaterial_wo6pp")
 position = Vector2(-35.5, 32)
-texture = ExtResource("7_nv837")
+texture = ExtResource("9_x0gwi")
 offset = Vector2(-0.5, -17)
 hframes = 6
 vframes = 10
@@ -420,8 +437,9 @@ libraries = {
 autoplay = "Side"
 
 [node name="Side_Body" type="Sprite2D" parent="MarginContainer/VBoxContainer/Details/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/Middle"]
+material = SubResource("ShaderMaterial_pmrul")
 position = Vector2(0.5, 32)
-texture = ExtResource("7_nv837")
+texture = ExtResource("9_x0gwi")
 offset = Vector2(-0.5, -17)
 hframes = 6
 vframes = 10
@@ -462,8 +480,9 @@ libraries = {
 autoplay = "Back"
 
 [node name="Back_Body" type="Sprite2D" parent="MarginContainer/VBoxContainer/Details/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/Middle"]
+material = SubResource("ShaderMaterial_n47ii")
 position = Vector2(36.5, 32)
-texture = ExtResource("7_nv837")
+texture = ExtResource("9_x0gwi")
 offset = Vector2(-0.5, -17)
 hframes = 6
 vframes = 10
@@ -548,14 +567,13 @@ text = ">"
 [node name="CurrentBody" type="Label" parent="MarginContainer/VBoxContainer/Details/VBoxContainer/MarginContainer/HBoxContainer/PanelContainer2/VBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"Label_minor"
-text = "Current Body:
+text = "Current Color:
 "
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="BodyColor" type="Label" parent="MarginContainer/VBoxContainer/Details/VBoxContainer/MarginContainer/HBoxContainer/PanelContainer2/VBoxContainer"]
 layout_mode = 2
-theme_type_variation = &"Label_minor"
+theme_override_font_sizes/font_size = 10
 text = "Gray"
 horizontal_alignment = 1
-vertical_alignment = 1

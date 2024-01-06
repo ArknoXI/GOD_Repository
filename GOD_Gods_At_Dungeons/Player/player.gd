@@ -27,7 +27,7 @@ func _ready() -> void:
 	GameManager.player_head = $TextureHead
 	GameManager.player_body = $TextureBody
 	$TextureHead.texture = load(GameManager.texture_path_Head)
-	$TextureBody.texture = load(GameManager.texture_path_Body)
+	$TextureBody.material.set_shader_parameter("color", GameManager.texture_path_Body)
 	_states_machine = _animation_tree["parameters/playback"]
 
 func _physics_process(_delta: float) -> void:

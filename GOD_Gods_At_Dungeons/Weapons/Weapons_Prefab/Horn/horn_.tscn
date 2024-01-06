@@ -1,10 +1,11 @@
-[gd_scene load_steps=22 format=3 uid="uid://blple0hs08mgm"]
+[gd_scene load_steps=23 format=3 uid="uid://blple0hs08mgm"]
 
 [ext_resource type="PackedScene" uid="uid://cp4ds2pxuam2d" path="res://Weapons/Weapon_Scenes/weapon_template.tscn" id="1_ywpin"]
 [ext_resource type="Script" path="res://Weapons/Weapons_Prefab/Horn/horn_.gd" id="2_1l61q"]
 [ext_resource type="Texture2D" uid="uid://cmll0urddt8ah" path="res://Weapons/Sprites/IconSet_2.png" id="4_x3qmh"]
 [ext_resource type="Texture2D" uid="uid://cemh8ht2ank6b" path="res://Weapons/Sprites/Arm_player_GoL.png" id="5_ourqk"]
 [ext_resource type="Texture2D" uid="uid://cub20c1ues60m" path="res://Cenas/Particles/Sprites/Particles-01.png" id="7_0jlg1"]
+[ext_resource type="PackedScene" uid="uid://bht1y60iriecy" path="res://Cenas/Features/Skills/Horn/Skill/skill_horn_creatures.tscn" id="7_043yb"]
 [ext_resource type="PackedScene" uid="uid://dv7iwrnag7pil" path="res://Cenas/Features/Skills/Horn/Supreme/supreme_horn_lagoon.tscn" id="7_80xf7"]
 [ext_resource type="Script" path="res://Weapons/Weapons_Prefab/Horn/Collision_teste.gd" id="8_4f80a"]
 
@@ -554,6 +555,8 @@ script = ExtResource("8_4f80a")
 color = Color(0.65098, 0.988235, 0.858824, 0.0313726)
 
 [node name="Skill" type="Node2D" parent="." index="9"]
+
+[node name="Skill_horn_creatures" parent="Skill" index="0" instance=ExtResource("7_043yb")]
 
 [node name="Supreme" type="Node2D" parent="." index="10"]
 

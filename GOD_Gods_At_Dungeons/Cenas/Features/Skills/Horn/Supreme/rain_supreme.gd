@@ -24,7 +24,9 @@ func _on_rain_time_timeout():
 		spawn_rain_on_enemy(enemy)
 
 func _on_rain_time_random_timeout():
-	spawn_rain_random()
+	for i in range(3):
+		await get_tree().create_timer(0.3).timeout
+		spawn_rain_random()
 
 func _on_body_entered(body):
 	if body is Enemy:

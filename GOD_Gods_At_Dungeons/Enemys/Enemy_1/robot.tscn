@@ -223,6 +223,7 @@ libraries = {
 autoplay = "idle"
 
 [node name="Vision_area" parent="." index="6"]
+visible = false
 collision_mask = 2
 monitorable = false
 
@@ -231,6 +232,7 @@ shape = SubResource("CircleShape2D_cnpxv")
 debug_color = Color(0.772549, 0.443137, 0.0509804, 0.419608)
 
 [node name="Collision_area" parent="." index="7"]
+visible = false
 collision_layer = 8
 collision_mask = 32
 

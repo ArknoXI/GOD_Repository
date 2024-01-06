@@ -8,6 +8,7 @@ class_name Enemy
 @onready var Particle:PackedScene = preload("res://Cenas/Particles/Explosion_particles/explosion_particles.tscn")
 @onready var hit_particles: PackedScene = preload("res://Cenas/Particles/Explosion_particles/robot_hit.tscn")
 @export_category("Variables")
+var target = null
 @export var _enemy_type:String = "chase" #Persegue, corre
 @export var is_alive = true
 @export var in_range: bool = false
@@ -20,19 +21,18 @@ func _ready():
 	$Attack_area/CollisionShape2D.shape.radius = range_attack
 
 func _physics_process(_delta):
-	if GameManager.player == null:
-		return
 	if not is_alive:
 		return
 	if not in_range and not is_attacking:
 		animation.play("idle")
 		vision_range.shape.radius = 110
 		return
-		
-	vision_range.shape.radius = 190
+	if target == null:
+		in_range = false
+		return
 	
-	var _direction: Vector2 = global_position.direction_to(GameManager.player.global_position)
-	var _distance: float = global_position.distance_to(GameManager.player.global_position)
+	var _direction = global_position.direction_to(target.global_position)
+	var _distance = global_position.distance_to(target.global_position)
 	
 	if _direction.y > 0:
 		$Texture.z_index = 2
@@ -103,12 +103,20 @@ func _on_animation_player_animation_finished(anim_name):
 func _on_attack_area_body_entered(body):
 	if body is Player and is_attacking:
 		body.stats.TakeDamage(stats.Damage)
+	if body is Clone and is_attacking:
+		if body.target == GameManager.player:
+			body.target = self
+		body.TakeDamage()
 
 
 func _on_vision_area_body_entered(body):
-	if body is Player:
+	if body is Player or body is Clone and target == null or target == GameManager.player:
+		target = body
+		vision_range.shape.radius = 190
 		in_range = true
 
 func _on_vision_area_body_exited(body):
-	if body is Player:
-		in_range = false
+	if body is Player or body is Clone:
+		$Vision_area.call_deferred("set_monitoring", false)
+		await get_tree().create_timer(0.1).timeout
+		$Vision_area.call_deferred("set_monitoring", true)

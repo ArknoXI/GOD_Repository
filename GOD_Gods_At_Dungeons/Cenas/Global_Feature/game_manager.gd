@@ -9,7 +9,7 @@ var dust: CPUParticles2D = null
 var Cells_position: Array = []
 
 var texture_path_Head = ""
-var texture_path_Body = ""
+var texture_path_Body: Color
 var weapon_type = ""
 
 

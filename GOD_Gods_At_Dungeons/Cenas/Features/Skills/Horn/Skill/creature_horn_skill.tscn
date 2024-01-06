@@ -1,0 +1,280 @@
+[gd_scene load_steps=21 format=3 uid="uid://ywkwdrd6h58h"]
+
+[ext_resource type="Script" path="res://Cenas/Features/Skills/Horn/Skill/creature_horn_skill.gd" id="1_y7sbv"]
+[ext_resource type="Shader" path="res://Cenas/Features/Skills/Horn/Skill/creature_horn_skill.gdshader" id="2_m5y72"]
+[ext_resource type="Texture2D" uid="uid://3tktdf6pmnce" path="res://UI/Health_bar/Bar_3/Dark_under.png" id="2_qrlrm"]
+[ext_resource type="Texture2D" uid="uid://c4k401jn6fm3l" path="res://UI/Health_bar/Bar_3/Red_ProgressBar.png" id="3_i2gg1"]
+[ext_resource type="Shader" path="res://Cenas/Features/Skills/Horn/Skill/creature_horn_skill_ring.gdshader" id="5_j5o2q"]
+[ext_resource type="PackedScene" uid="uid://bcg0j5qyw2cya" path="res://Cenas/Particles/Explosion_particles/lagoon_effects_bubble.tscn" id="6_xh8np"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g2qg7"]
+resource_local_to_scene = true
+shader = ExtResource("2_m5y72")
+shader_parameter/time = 0.0
+shader_parameter/is_active = false
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dy0ia"]
+radius = 120.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8lx5c"]
+radius = 50.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lqxko"]
+shader = ExtResource("5_j5o2q")
+shader_parameter/radius = 0.0
+shader_parameter/thickness = 0.01
+shader_parameter/color = Color(0, 0.654902, 0.647059, 1)
+shader_parameter/brightness = 3.45
+shader_parameter/angular_speed = 2.5
+shader_parameter/radial_speed = 1.4
+shader_parameter/alpha = 0.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7tjpa"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yw4wm"]
+texture = ExtResource("2_qrlrm")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1lc88"]
+texture = ExtResource("3_i2gg1")
+
+[sub_resource type="Animation" id="Animation_prnd8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Figure:material:shader_parameter/time")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_dot73"]
+resource_name = "spawn_in"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Figure:material:shader_parameter/time")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.57]
+}
+
+[sub_resource type="Animation" id="Animation_8rsan"]
+resource_name = "spawn_out"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Figure:material:shader_parameter/time")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.57, 0.0]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"destroy"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p1wh0"]
+_data = {
+"RESET": SubResource("Animation_prnd8"),
+"spawn_in": SubResource("Animation_dot73"),
+"spawn_out": SubResource("Animation_8rsan")
+}
+
+[sub_resource type="Animation" id="Animation_30lu8"]
+resource_name = "Aux_attack"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Attack/Ring:material:shader_parameter/radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.97]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Attack/Ring:material:shader_parameter/alpha")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_0p8rg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Attack/Ring:material:shader_parameter/radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Attack/Ring:material:shader_parameter/alpha")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mpj2s"]
+_data = {
+"Aux_attack": SubResource("Animation_30lu8"),
+"RESET": SubResource("Animation_0p8rg")
+}
+
+[node name="Creature_horn_skill" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 15
+motion_mode = 1
+script = ExtResource("1_y7sbv")
+
+[node name="Figure" type="Node2D" parent="."]
+material = SubResource("ShaderMaterial_g2qg7")
+
+[node name="Vision" type="Area2D" parent="."]
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Vision"]
+shape = SubResource("CircleShape2D_dy0ia")
+debug_color = Color(0.72549, 0.47451, 0, 0.419608)
+
+[node name="Attack" type="Area2D" parent="."]
+position = Vector2(0, -7)
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attack"]
+shape = SubResource("CircleShape2D_8lx5c")
+disabled = true
+debug_color = Color(1, 0, 0.0862745, 0.419608)
+
+[node name="Ring" type="ColorRect" parent="Attack"]
+material = SubResource("ShaderMaterial_lqxko")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -51.0
+offset_right = -10.0
+offset_bottom = -11.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2.48635, 2.53313)
+
+[node name="Lagoon_effects_bubble" parent="Attack" instance=ExtResource("6_xh8np")]
+emission_shape = 0
+gravity = Vector2(0, 0)
+initial_velocity_min = 60.0
+initial_velocity_max = 60.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -7)
+shape = SubResource("CircleShape2D_7tjpa")
+
+[node name="HealthBar" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ProgressBar" type="ProgressBar" parent="HealthBar"]
+z_index = 7
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 9.0
+offset_top = -8.0
+offset_right = 9.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.538, 0.1)
+theme_override_styles/background = SubResource("StyleBoxTexture_yw4wm")
+theme_override_styles/fill = SubResource("StyleBoxTexture_1lc88")
+max_value = 3.0
+step = 1.0
+value = 2.0
+show_percentage = false
+
+[node name="Hit_cooldown" type="Timer" parent="."]
+wait_time = 1.3
+one_shot = true
+autostart = true
+
+[node name="AttackTimer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_p1wh0")
+}
+autoplay = "spawn_in"
+
+[node name="auxanim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_mpj2s")
+}
+autoplay = "Aux_attack"
+
+[connection signal="body_entered" from="Vision" to="." method="_on_vision_body_entered"]
+[connection signal="body_exited" from="Vision" to="." method="_on_vision_body_exited"]
+[connection signal="body_entered" from="Attack" to="." method="_on_attack_body_entered"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

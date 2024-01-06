@@ -38,11 +38,13 @@ mouse_filter = 1
 action_mode = 0
 text = "Change Class"
 
-[node name="Robot" parent="." instance=ExtResource("6_1n2pw")]
-position = Vector2(856, 613)
+[node name="Enemys" type="Node2D" parent="."]
 
-[node name="Robot2" parent="." instance=ExtResource("6_1n2pw")]
-position = Vector2(625, 645)
+[node name="Robot" parent="Enemys" instance=ExtResource("6_1n2pw")]
+position = Vector2(604, 670)
+
+[node name="Robot2" parent="Enemys" instance=ExtResource("6_1n2pw")]
+position = Vector2(821, 649)
 
 [connection signal="pressed" from="Change_Display/Select" to="Change_Display" method="_on_select_pressed"]
 

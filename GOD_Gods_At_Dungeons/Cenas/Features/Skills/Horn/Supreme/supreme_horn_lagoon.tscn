@@ -9,8 +9,8 @@
 [node name="Supreme_Horn_lagoon" type="Node2D" node_paths=PackedStringArray("cooldown")]
 script = ExtResource("1_gfvdf")
 Prefab_horn = ExtResource("2_4brjp")
-Duration = 10.0
-cooldown_time = 15.0
+Duration = 7.0
+cooldown_time = 20.0
 cooldown = NodePath("Cooldown")
 cor = Color(1, 1, 1, 0)
 
@@ -22,11 +22,17 @@ one_shot = true
 [node name="TextureProgressBar" parent="Skill_Icon/HBoxContainer/Supreme" index="0"]
 texture_progress = ExtResource("3_g7spt")
 
-[node name="TextureProgressBar" parent="Skill_Icon/HBoxContainer/Skill" index="0"]
+[node name="Skill" parent="Skill_Icon/HBoxContainer" index="1"]
 modulate = Color(1, 1, 1, 0)
+
+[node name="TextureProgressBar" parent="Skill_Icon/HBoxContainer/Skill" index="0"]
 texture_progress = ExtResource("4_j4b12")
 
 [node name="E" parent="Skill_Icon" index="1"]
 modulate = Color(1, 1, 1, 0)
+
+[node name="Q" parent="Skill_Icon" index="2"]
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
 
 [editable path="Skill_Icon"]

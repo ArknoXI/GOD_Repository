@@ -1,23 +1,24 @@
 extends Control
 
+@export var start_color: Color = Color.DIM_GRAY
+
 @export_category("Arrays")
 @export var Heads:Array = [
 	"res://Player/Sprites/GoA/Head/Head_GoA.png",
 	"res://Player/Sprites/GoB/Head/Head_GoB.png",
 	"res://Player/Sprites/GoL/Head/Head_GoL.png"
 ]
-
-@export var Bodys:Array = [
-	"res://Player/Sprites/Body_Colors/Style_01/Body_Gray.png",
-	"res://Player/Sprites/Body_Colors/Style_01/Body_Green.png",
-	"res://Player/Sprites/Body_Colors/Style_01/Body_Blue.png"
-]
-
-@export var color_list:Array = [
-	"Gray",
-	"Green",
-	"Blue"
-]
+@export var Color_list = {
+	"Dark Gray": Color.DIM_GRAY,
+	"Green": Color.GREEN,
+	"Blue": Color.BLUE,
+	"Red": Color.RED,
+	"Yellow": Color.YELLOW,
+	"Orange": Color.ORANGE,
+	"Pink": Color.PINK,
+	"Purple": Color.PURPLE,
+	"Gray": Color.GRAY
+}
 
 @export_category("Heads")
 @export var Head_Face: Sprite2D
@@ -25,9 +26,9 @@ extends Control
 @export var Head_Back: Sprite2D
 
 @export_category("Bodys")
-@export var Body_Face: Sprite2D
-@export var Body_Side: Sprite2D
-@export var Body_Back: Sprite2D
+@export var body_face: Sprite2D
+@export var body_side: Sprite2D
+@export var body_back: Sprite2D
 
 @export_category("Labels")
 @export var TITLE: Label
@@ -37,11 +38,15 @@ extends Control
 @export var WEAPON: Label
 @export var BODY_COLOR: Label
 
+var key = Color_list.keys()
 var current_class: int = 0
-var current_body_id = 0
+var current_color: int = 0
 var current_weapon = "one"
 
 func _ready():
+	body_face.material.set_shader_parameter("color", start_color)
+	body_side.material.set_shader_parameter("color", start_color)
+	body_back.material.set_shader_parameter("color", start_color)
 	for button in get_tree().get_nodes_in_group("button"):
 		button.pressed.connect(change_body.bind(button.name))
 		
@@ -81,7 +86,7 @@ func set_class(button):
 		return
 	if button == "Start":
 		GameManager.texture_path_Head = Heads[current_class]
-		GameManager.texture_path_Body = Bodys[current_body_id]
+		GameManager.texture_path_Body = Color_list[key[current_color]]
 		GameManager.weapon_type = current_weapon
 		TransitionScreen.fade_in("res://Locals/main.tscn", 4)
 		return
@@ -89,26 +94,30 @@ func set_class(button):
 		TransitionScreen.fade_in("res://Locals/Menu_Screen.tscn", 2)
 		return
 	if button == "Previous":
-		update_index("minus")
-		update_body()
+		update_body("minus")
+		update_body_color()
 		return
 	if button == "Next":
-		update_index("plus")
-		update_body()
+		update_body("plus")
+		update_body_color()
 		return
+
+func update_body(value: String):
+	if value == "minus":
+		current_color -= 1
+	if value == "plus":
+		current_color += 1
+	if current_color == -1:
+		current_color = Color_list.size() - 1
+	if current_color == Color_list.size():
+		current_color = 0
 		
-func update_index(type:String):
-	if type == "minus":
-		current_body_id -= 1
+func update_body_color():
+	BODY_COLOR.text = key[current_color]
+	body_back.material.set_shader_parameter("color", Color_list[key[current_color]])
+	body_face.material.set_shader_parameter("color", Color_list[key[current_color]])
+	body_side.material.set_shader_parameter("color", Color_list[key[current_color]])
 		
-	if type == "plus":
-		current_body_id += 1
-		
-	if current_body_id == -1:
-		current_body_id = Bodys.size() - 1 
-		
-	if current_body_id == Bodys.size():
-		current_body_id = 0
 func update_head_index(classe):
 	current_class = classe
 	
@@ -116,9 +125,3 @@ func update_head():
 	Head_Back.texture = load(Heads[current_class])
 	Head_Face.texture = load(Heads[current_class])
 	Head_Side.texture = load(Heads[current_class])
-	
-func update_body():
-	BODY_COLOR.text = color_list[current_body_id]
-	Body_Back.texture = load(Bodys[current_body_id])
-	Body_Face.texture = load(Bodys[current_body_id])
-	Body_Side.texture = load(Bodys[current_body_id])
